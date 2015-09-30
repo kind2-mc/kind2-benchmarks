@@ -1,0 +1,7 @@
+(set-info :origin "NTS benchmark converted to SMT-LIB2 using Eldarica (http://lara.epfl.ch/w/eldarica)")
+(set-logic HORN)
+(declare-fun p (Int Int Int Int Int Int Int Int Int) Bool)
+(assert(forall((A Int)(B Int)(C Int)(D Int)(E Int)(F Int)(G Int)(H Int)(I Int)(J Int)(K Int)(L Int)(M Int)(N Int)(O Int))(=>(and (and (= A 2) (and (and (and (and (and (and (and (= J B) (= K C)) (= L D)) (= M E)) (= J F)) (= N G)) (= L H)) (= O I))) (not (not (>= (+ L 0) 0)))) (p A B C D E F G H I))))
+(assert(forall((A Int)(B Int)(C Int)(D Int)(E Int)(F Int)(G Int)(H Int)(I Int)(J Int)(K Int)(L Int)(M Int)(N Int)(O Int)(P Int)(Q Int)(R Int)(S Int)(T Int)(U Int)(V Int)(W Int)(X Int)(Y Int)(Z Int)(A1 Int)(B1 Int))(=>(and (and (and (and (and (= A 1) (= J 2)) (and (and (and (= K B) (= L C)) (= M D)) (= N E))) (and (and (and (and (and (and (and (= K O) (= P Q)) (= L R)) (= S T)) (= U V)) (= W X)) (= Y Z)) (= A1 B1))) (and (and (not (not (= (* (- 1) Y) (- 1)))) (not (not (= (* (- 1) N) (- 1))))) (not (not (= (* (- 1) M) (- 1)))))) (p J O Q R T V X Z B1)) (p A B C D E F G H I))))
+(assert(not (exists((A Int)(B Int)(C Int)(D Int)(E Int)(F Int)(G Int)(H Int)(I Int)(J Int)(K Int)(L Int)(M Int))(and (and (and (= A 1) (and (and (and (= B C) (= D E)) (= F G)) (= H I))) (and (not (not (>= (+ D 0) 0))) (not (= (* (- 1) (- D F)) 0)))) (p A C E G I J K L M)))))
+(check-sat)

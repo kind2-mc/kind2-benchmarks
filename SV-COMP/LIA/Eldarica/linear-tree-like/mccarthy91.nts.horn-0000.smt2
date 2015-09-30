@@ -1,0 +1,7 @@
+(set-info :origin "NTS benchmark converted to SMT-LIB2 using Eldarica (http://lara.epfl.ch/w/eldarica)")
+(set-logic HORN)
+(declare-fun p (Int Int Int Int Int) Bool)
+(assert(forall((A Int)(B Int)(C Int)(D Int)(E Int)(F Int)(G Int))(=>(and (and (= A 2) (and (and (and (= F B) (= G C)) (= F D)) (= G E))) (not (not (>= (+ (- 100 G) 0) 0)))) (p A B C D E))))
+(assert(forall((A Int)(B Int)(C Int)(D Int)(E Int)(F Int)(G Int)(H Int)(I Int)(J Int)(K Int)(L Int)(M Int)(N Int)(O Int))(=>(and (and (and (and (and (= A 1) (= F 2)) (and (and (and (= G B) (= H C)) (= I D)) (= J E))) (and (and (and (= G K) (= H L)) (= M N)) (= J O))) (and (not (not (>= (+ (+ J (- 101)) 0) 0))) (not (not (= (+ J (- 10)) I))))) (p F K L N O)) (p A B C D E))))
+(assert(not (exists((A Int)(B Int)(C Int)(D Int)(E Int)(F Int)(G Int)(H Int)(I Int))(and (and (and (= A 1) (and (and (and (= B C) (= D E)) (= F G)) (= H I))) (and (not (not (>= (+ (- 100 D) 0) 0))) (not (= (* (- 1) (+ F (- 91))) 0)))) (p A C E G I)))))
+(check-sat)

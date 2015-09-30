@@ -1,0 +1,87 @@
+-- Triplex voter system.
+
+node voter(input1, input2, input3: real) returns (output: real);
+var
+  equalized1,    equalized2,    equalized3 : real;
+  equalization1, equalization2, equalization3 : real;
+  satCentering, centering : real;
+  df1, df2, df3 : real;
+  st1, st2, st3 : real;
+  three_output: real;
+  c1, c2, c3 : bool;
+  d1, d2, d3 : bool;
+  str_invariant, eqs_stable, out_stable: bool;
+let
+
+  assert (input1 <  1.2); 
+  assert (input1 > -1.2); 
+  assert (input2 <  1.2); 
+  assert (input2 > -1.2); 
+  assert (input3 <  1.2); 
+  assert (input3 > -1.2);
+
+  equalized1 = input1 - equalization1;
+  df1 = equalized1 - three_output;
+  st1 = if (df1 > 0.5) then 0.5 else (if (df1 < -0.5) then -0.5 else df1);
+  equalization1 =
+    0.0 -> pre (equalization1) +
+          (pre (st1) - pre (satCentering)) * 0.05;
+ 
+  equalized2 = input2 - equalization2;
+  df2 = equalized2 - three_output;
+  st2 = if (df2 > 0.5) then 0.5 else (if (df2 < -0.5) then -0.5 else df2);
+  equalization2 =
+    0.0 -> pre (equalization2) +
+          (pre (st2) - pre (satCentering)) * 0.05;
+
+  equalized3 = input3 - equalization3;
+  df3 = equalized3 - three_output;
+  st3 = if (df3 > 0.5) then 0.5 else (if (df3 < -0.5) then -0.5 else df3);
+  equalization3 =
+    0.0 -> pre (equalization3) +
+          (pre (st3) - pre (satCentering)) * 0.05;
+
+  c1 = equalized1 > equalized2;
+  c2 = equalized2 > equalized3;
+  c3 = equalized3 > equalized1;
+
+  three_output = if (c1 = c2) then equalized2
+                        else (if (c2 = c3) then equalized3
+                                           else equalized1);
+
+  d1 = equalization1 > equalization2;
+  d2 = equalization2 > equalization3;
+  d3 = equalization3 > equalization1;
+
+  centering = if (d1 = d2) then equalization2
+                           else (if (d2 = d3) then equalization3
+                                              else equalization1);
+  satCentering =
+    if (centering > 0.25) then 0.25
+                          else (if (centering < -0.25) then -0.25
+                                                       else centering);
+
+  output = three_output / 3.0 ;
+
+  -- Stability property.
+  out_stable = (-1.2 <= output) and (output <= 1.2);
+
+  -- Lemma usually known easing the process of proving the property.
+  eqs_stable = ( equalization1 <=  2.0 * 1.2) and
+               ( equalization1 >= -2.0 * 1.2) and
+               ( equalization2 <=  2.0 * 1.2) and
+               ( equalization2 >= -2.0 * 1.2) and
+               ( equalization3 <=  2.0 * 1.2) and
+               ( equalization3 >= -2.0 * 1.2);
+
+  -- Strengthening invariant making out_stable 0-inductive.
+  str_invariant =
+    (-2.9 <= equalization1 + equalization2 + equalization3       ) and
+    (        equalization1 + equalization2 + equalization3 <= 2.9);
+
+--%PROPERTY out_stable;
+--%PROPERTY eqs_stable;
+--%PROPERTY str_invariant;
+--%MAIN;
+
+tel

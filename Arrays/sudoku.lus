@@ -1,0 +1,265 @@
+type char = subrange [32,254] of int;
+
+type cval = subrange [0,9] of int;
+type line = cval^9;
+type grid = cval^9^9;
+
+const none : cval = 0;
+const one : cval = 1;
+const two : cval = 2;
+const three : cval = 3;
+const four : cval = 4;
+const five : cval = 5;
+const six : cval = 6;
+const seven : cval = 7;
+const eight : cval = 8;
+const nine : cval = 9;
+
+node sudoku (g : grid) returns (validSudoku : bool; no_solution : bool);
+var
+values : line;
+validLines : bool;
+validColumns : bool;
+validSubGrids : bool;
+ng : grid;
+grid1___154 : bool;
+g_x274 : grid;
+ok_x275 : bool;
+acc1_x276 : bool;
+acc2_x277 : bool;
+v1_x278 : cval^3^3^3;
+nv1_x279 : cval^3^3^3;
+v2_x280 : cval^3^3^3;
+nv2_x281 : cval^3^3^3;
+v3_x282 : cval^3^3^3;
+nv3_x283 : cval^3^3^3;
+v_536 : bool^3;
+v_538 : bool^3;
+v_343_x542 : line^3^9;
+v_349_x543 : bool^3^9;
+v_347_x544 : bool^3^9;
+v_257_x356_x545 : bool^3^9;
+v_313_x355_x546 : bool^3^9^9;
+v_315_x354_x547 : bool^3^9^9;
+v_310_x353_x548 : cval^3^9^9;
+full_range_x263_x549 : bool^3;
+valid_x262_x550 : bool^3;
+l_x261_x551 : line^3;
+acc_x260_x552 : bool^3;
+v_576 : bool^3;
+v_578 : bool^3;
+v_343_x582 : line^3^9;
+v_349_x583 : bool^3^9;
+v_347_x584 : bool^3^9;
+v_257_x356_x585 : bool^3^9;
+v_313_x355_x586 : bool^3^9^9;
+v_315_x354_x587 : bool^3^9^9;
+v_310_x353_x588 : cval^3^9^9;
+full_range_x263_x589 : bool^3;
+valid_x262_x590 : bool^3;
+l_x261_x591 : line^3;
+acc_x260_x592 : bool^3;
+v_616 : bool^3;
+v_618 : bool^3;
+v_343_x622 : line^3^9;
+v_349_x623 : bool^3^9;
+v_347_x624 : bool^3^9;
+v_257_x356_x625 : bool^3^9;
+v_313_x355_x626 : bool^3^9^9;
+v_315_x354_x627 : bool^3^9^9;
+v_310_x353_x628 : cval^3^9^9;
+full_range_x263_x629 : bool^3;
+valid_x262_x630 : bool^3;
+l_x261_x631 : line^3;
+acc_x260_x632 : bool^3;
+v_656 : cval^3^9;
+v_660 : cval^3^9;
+v_664 : cval^3^9;
+v_668 : bool^9;
+v_670 : bool^9;
+v_319_x674 : line^9^9;
+v_325_x675 : bool^9^9;
+v_323_x676 : bool^9^9;
+v_257_x332_x677 : bool^9^9;
+v_313_x331_x678 : bool^9^9^9;
+v_315_x330_x679 : bool^9^9^9;
+v_310_x329_x680 : cval^9^9^9;
+full_range_x681 : bool^9;
+v_701 : bool^9;
+v_703 : bool^9;
+v_319_x707 : line^9^9;
+v_325_x708 : bool^9^9;
+v_323_x709 : bool^9^9;
+v_257_x332_x710 : bool^9^9;
+v_313_x331_x711 : bool^9^9^9;
+v_315_x330_x712 : bool^9^9^9;
+v_310_x329_x713 : cval^9^9^9;
+full_range_x714 : bool^9;
+
+let
+values[i1] =
+  if i1 = 0
+    then one
+    else
+    if i1 = 1
+      then two
+      else
+      if i1 = 2
+        then three
+        else
+        if i1 = 3
+          then four
+          else
+          if i1 = 4
+            then five
+            else
+            if i1 = 5
+              then six
+              else if i1 = 6 then seven else if i1 = 7 then eight else nine;
+validSudoku = (validLines and validColumns) and validSubGrids;
+no_solution = not validSudoku;
+validLines = v_668[8];
+validColumns = v_701[8];
+validSubGrids = ok_x275;
+ng[i1][i2] = g[i2][i1];
+grid1___154 =
+  (((((((((((((((((((((((((((((((g[0][0] = seven) and (g[2][0] = nine))
+                                                              and
+                                                              (g[6][0] = four))
+                                                            and
+                                                            (g[3][1] = seven))
+                                                          and (g[5][1] = four))
+                                                        and (g[7][1] = two))
+                                                      and (g[8][1] = nine))
+                                                    and (g[2][2] = eight))
+                                                  and (g[3][2] = five))
+                                                and (g[6][2] = seven))
+                                              and (g[8][2] = six))
+                                            and (g[3][3] = six))
+                                          and (g[7][3] = four))
+                                        and (g[0][4] = five))
+                                      and (g[2][4] = four))
+                                    and (g[3][4] = nine))
+                                  and (g[5][4] = three))
+                                and (g[6][4] = two))
+                              and (g[8][4] = one))
+                            and (g[1][5] = three))
+                          and (g[5][5] = eight))
+                        and (g[0][6] = eight))
+                      and (g[2][6] = two))
+                    and (g[5][6] = nine))
+                  and (g[6][6] = three))
+                and (g[0][7] = six))
+              and (g[1][7] = four))
+            and (g[3][7] = eight))
+          and (g[5][7] = seven))
+        and (g[2][8] = seven))
+      and (g[6][8] = six))
+    and (g[8][8] = five);
+g_x274[i1][i2] = g[i1][i2];
+ok_x275 = v_536[2];
+acc1_x276 = v_616[2];
+acc2_x277 = v_576[2];
+v1_x278[i1][i2][i3] =
+  if i2 = 0
+    then v_664[i1][i3 + 0]
+    else if i2 = 1 then v_664[i1][i3 + 3] else v_664[i1][i3 + 6];
+nv1_x279[i1][i2][i3] = v1_x278[i2][i1][i3];
+v2_x280[i1][i2][i3] =
+  if i2 = 0
+    then v_660[i1][i3 + 0]
+    else if i2 = 1 then v_660[i1][i3 + 3] else v_660[i1][i3 + 6];
+nv2_x281[i1][i2][i3] = v2_x280[i2][i1][i3];
+v3_x282[i1][i2][i3] =
+  if i2 = 0
+    then v_656[i1][i3 + 0]
+    else if i2 = 1 then v_656[i1][i3 + 3] else v_656[i1][i3 + 6];
+nv3_x283[i1][i2][i3] = v3_x282[i2][i1][i3];
+v_536[i1] = valid_x262_x550[i1];
+v_538[i1] = if i1 = 0 then acc2_x277 else v_536[i1 - 1];
+v_343_x542[i1][i2][i3] = l_x261_x551[i1][i3];
+v_349_x543[i1][i2] = if i2 = 0 then true else v_347_x544[i1][i2 - 1];
+v_347_x544[i1][i2] = v_349_x543[i1][i2] and v_257_x356_x545[i1][i2];
+v_257_x356_x545[i1][i2] = v_313_x355_x546[i1][i2][8];
+v_313_x355_x546[i1][i2][i3] =
+  v_315_x354_x547[i1][i2][i3]
+    or (v_310_x353_x548[i1][i2][i3] = v_343_x542[i1][i2][i3]);
+v_315_x354_x547[i1][i2][i3] =
+  if i3 = 0 then false else v_313_x355_x546[i1][i2][i3 - 1];
+v_310_x353_x548[i1][i2][i3] = values[i2];
+full_range_x263_x549[i1] = v_347_x544[i1][8];
+valid_x262_x550[i1] = acc_x260_x552[i1] and full_range_x263_x549[i1];
+l_x261_x551[i1][i2] =
+  if i2 < 6
+    then if i2 < 3 then nv3_x283[i1][0][i2] else nv3_x283[i1][1][i2 - 3]
+    else nv3_x283[i1][2][i2 - 6];
+acc_x260_x552[i1] = v_538[i1];
+v_576[i1] = valid_x262_x590[i1];
+v_578[i1] = if i1 = 0 then acc1_x276 else v_576[i1 - 1];
+v_343_x582[i1][i2][i3] = l_x261_x591[i1][i3];
+v_349_x583[i1][i2] = if i2 = 0 then true else v_347_x584[i1][i2 - 1];
+v_347_x584[i1][i2] = v_349_x583[i1][i2] and v_257_x356_x585[i1][i2];
+v_257_x356_x585[i1][i2] = v_313_x355_x586[i1][i2][8];
+v_313_x355_x586[i1][i2][i3] =
+  v_315_x354_x587[i1][i2][i3]
+    or (v_310_x353_x588[i1][i2][i3] = v_343_x582[i1][i2][i3]);
+v_315_x354_x587[i1][i2][i3] =
+  if i3 = 0 then false else v_313_x355_x586[i1][i2][i3 - 1];
+v_310_x353_x588[i1][i2][i3] = values[i2];
+full_range_x263_x589[i1] = v_347_x584[i1][8];
+valid_x262_x590[i1] = acc_x260_x592[i1] and full_range_x263_x589[i1];
+l_x261_x591[i1][i2] =
+  if i2 < 6
+    then if i2 < 3 then nv2_x281[i1][0][i2] else nv2_x281[i1][1][i2 - 3]
+    else nv2_x281[i1][2][i2 - 6];
+acc_x260_x592[i1] = v_578[i1];
+v_616[i1] = valid_x262_x630[i1];
+v_618[i1] = if i1 = 0 then true else v_616[i1 - 1];
+v_343_x622[i1][i2][i3] = l_x261_x631[i1][i3];
+v_349_x623[i1][i2] = if i2 = 0 then true else v_347_x624[i1][i2 - 1];
+v_347_x624[i1][i2] = v_349_x623[i1][i2] and v_257_x356_x625[i1][i2];
+v_257_x356_x625[i1][i2] = v_313_x355_x626[i1][i2][8];
+v_313_x355_x626[i1][i2][i3] =
+  v_315_x354_x627[i1][i2][i3]
+    or (v_310_x353_x628[i1][i2][i3] = v_343_x622[i1][i2][i3]);
+v_315_x354_x627[i1][i2][i3] =
+  if i3 = 0 then false else v_313_x355_x626[i1][i2][i3 - 1];
+v_310_x353_x628[i1][i2][i3] = values[i2];
+full_range_x263_x629[i1] = v_347_x624[i1][8];
+valid_x262_x630[i1] = acc_x260_x632[i1] and full_range_x263_x629[i1];
+l_x261_x631[i1][i2] =
+  if i2 < 6
+    then if i2 < 3 then nv1_x279[i1][0][i2] else nv1_x279[i1][1][i2 - 3]
+    else nv1_x279[i1][2][i2 - 6];
+acc_x260_x632[i1] = v_618[i1];
+v_656[i1][i2] = g_x274[i1 + 6][i2];
+v_660[i1][i2] = g_x274[i1 + 3][i2];
+v_664[i1][i2] = g_x274[i1 + 0][i2];
+v_668[i1] = v_670[i1] and full_range_x681[i1];
+v_670[i1] = if i1 = 0 then true else v_668[i1 - 1];
+v_319_x674[i1][i2][i3] = g[i1][i3];
+v_325_x675[i1][i2] = if i2 = 0 then true else v_323_x676[i1][i2 - 1];
+v_323_x676[i1][i2] = v_325_x675[i1][i2] and v_257_x332_x677[i1][i2];
+v_257_x332_x677[i1][i2] = v_313_x331_x678[i1][i2][8];
+v_313_x331_x678[i1][i2][i3] =
+  v_315_x330_x679[i1][i2][i3]
+    or (v_310_x329_x680[i1][i2][i3] = v_319_x674[i1][i2][i3]);
+v_315_x330_x679[i1][i2][i3] =
+  if i3 = 0 then false else v_313_x331_x678[i1][i2][i3 - 1];
+v_310_x329_x680[i1][i2][i3] = values[i2];
+full_range_x681[i1] = v_323_x676[i1][8];
+v_701[i1] = v_703[i1] and full_range_x714[i1];
+v_703[i1] = if i1 = 0 then true else v_701[i1 - 1];
+v_319_x707[i1][i2][i3] = ng[i1][i3];
+v_325_x708[i1][i2] = if i2 = 0 then true else v_323_x709[i1][i2 - 1];
+v_323_x709[i1][i2] = v_325_x708[i1][i2] and v_257_x332_x710[i1][i2];
+v_257_x332_x710[i1][i2] = v_313_x331_x711[i1][i2][8];
+v_313_x331_x711[i1][i2][i3] =
+  v_315_x330_x712[i1][i2][i3]
+    or (v_310_x329_x713[i1][i2][i3] = v_319_x707[i1][i2][i3]);
+v_315_x330_x712[i1][i2][i3] =
+  if i3 = 0 then false else v_313_x331_x711[i1][i2][i3 - 1];
+v_310_x329_x713[i1][i2][i3] = values[i2];
+full_range_x714[i1] = v_323_x709[i1][8];
+--%PROPERTY no_solution;
+tel

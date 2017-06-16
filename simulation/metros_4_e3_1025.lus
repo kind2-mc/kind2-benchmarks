@@ -47,7 +47,7 @@ var nB0,nB1 : int;
     ast:bool;
 let
   (ast,nB0,nB1,nS,diff0,diff1,avance0,avance1,retard0,retard1) = main(B0,B1,S);
-  OK = Sofar( ast ) => true -> (pre(nB0) - pre (nB1)) <= 30;
+  OK = Sofar( ast ) => (true -> (pre(nB0) - pre (nB1)) <= 30);
   --%MAIN;
   --%PROPERTY OK;
 tel

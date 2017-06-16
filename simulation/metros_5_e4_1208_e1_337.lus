@@ -48,8 +48,8 @@ var nB0,nB1 : int;
 let
   (ast,nB0,nB1,nS,diff0,diff1,avance0,avance1,retard0,retard1) = main(B0,B1,S);
   OK = Sofar( ast )
-       => true -> (((pre(nB0) +1- pre (nB1)) <= 30) and
-                  ((pre(nB1) - pre (nB0)) <= 30));
+       => (true -> (((pre(nB0) +1- pre (nB1)) <= 30) and
+                  ((pre(nB1) - pre (nB0)) <= 30)));
   --%MAIN;
   --%PROPERTY OK;
 tel

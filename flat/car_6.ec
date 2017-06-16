@@ -18,7 +18,7 @@ var
   V90_X: bool;
 
 let
-  OK = ((V33_env => true) -> (not (pre V26_bump)));
+  OK = (V33_env => (true -> (not (pre V26_bump))));
   V24_toofast = (V28_speed >= 3);
   V25_stop = (V29_time >= 4);
   V26_bump = (V27_dist = 10);

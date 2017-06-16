@@ -23,7 +23,7 @@ var
   V169_Sofar: bool;
 
 let
-  OK = ((V169_Sofar => true) -> (((pre V38_nB0) - (pre V39_nB1)) <= 30));
+  OK = (V169_Sofar => (true -> (((pre V38_nB0) - (pre V39_nB1)) <= 30)));
   V38_nB0 = (0 -> (if B0 then (((pre V38_nB0) + 1) + 1) else (pre V38_nB0)));
   V39_nB1 = (0 -> (if B1 then ((pre V39_nB1) + 1) else (pre V39_nB1)));
   V40_nS = (0 -> (if S then ((pre V40_nS) + 1) else (pre V40_nS)));

@@ -46,7 +46,7 @@ let
   (toofast, stop, bump, dist, speed, time, move, second, meter) = voiture(m,s);
   env = Sofar( excludes2( m, s ) );
 
-  OK = env => true -> not pre bump;
+  OK = env => (true -> not pre bump);
   --%PROPERTY OK;
   --%MAIN;
 tel

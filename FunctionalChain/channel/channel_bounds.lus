@@ -76,7 +76,7 @@ let
 
 --%PROPERTY out_stable;
 --%PROPERTY eqs_stable;
---%PROPERTY str_invariant;
+-- --%PROPERTY str_invariant;
 
 tel
 

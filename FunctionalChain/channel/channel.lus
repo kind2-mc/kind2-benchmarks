@@ -67,8 +67,8 @@ let
   out_stable = (-1.2 <= output) and (output <= 1.2);
 
 --%PROPERTY out_stable;
---%PROPERTY eqs_stable;
---%PROPERTY str_invariant;
+-- --%PROPERTY eqs_stable;
+-- --%PROPERTY str_invariant;
 
 tel
 

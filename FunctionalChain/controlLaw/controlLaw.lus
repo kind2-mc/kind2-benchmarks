@@ -5,7 +5,7 @@ node controlLaw(in1,in2 : real) returns (integ : real);
 var
   inp,sum1,dtf : real;
   c1,c2,c3 : bool;
-  check: bool;
+  check_cond: bool;
 let
 
   inp = in1 - 0.0392 * dtf;
@@ -18,9 +18,9 @@ let
   integ = 0.0 -> pre integ + if (c1 or c2 or c3) then inp else 0.0;
   dtf = 0.0 -> in2 + 0.9608 * pre dtf;
 
-  check = ((-25.0 <= integ) and (integ <= 25.0));
+  check_cond = ((-25.0 <= integ) and (integ <= 25.0));
 
-  --%PROPERTY check;
+  --%PROPERTY check_cond;
   --%MAIN;
 
 tel

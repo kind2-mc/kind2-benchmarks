@@ -1,0 +1,31 @@
+--
+-- Source: Bertrand Jeannet
+--
+
+node Sofar( X : bool ) returns ( Sofar : bool );
+let
+    Sofar = X -> X and pre Sofar;
+tel
+
+
+node Age (p: bool) returns (age_of_p: int32);
+-- how long has p been maintained true in the strict past
+let
+ age_of_p = (int32 0) -> if pre(p) then pre(age_of_p) + (int32 1) else (int32 0);
+tel
+
+-- Theorem (int32 1):
+-- (p -k-> q and q -m-> r) => p -k+m-> r
+
+-- Not provable in luke-*
+node top (ik, im: int32; p, q, r : bool) returns (OK: bool);
+var k,m : int32;
+    env : bool;
+let
+    k = ik -> pre k;
+    m = im -> pre m;
+    env = Sofar((k>=(int32 1) and m>=(int32 1)) and (Age(p)>=k => q)  and (Age(q)>=m => r));
+    OK = env => (true -> ( (Age(p)>=k+m) => r ));
+    --%PROPERTY OK;
+    --%MAIN;
+tel

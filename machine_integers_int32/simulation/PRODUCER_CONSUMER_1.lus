@@ -1,0 +1,56 @@
+node First( X : int32 ) returns ( First : int32 );
+let
+    First = X -> pre First;
+tel
+
+node Sofar( X : bool ) returns ( Sofar : bool );
+let
+    Sofar = X -> X and pre Sofar;
+tel
+
+node PRODUCER_CONSUMMER(etat1, etat2, etat3 : bool; a_init : int32
+) returns(i, b, a, o1, o2 : int32);
+var
+	garde1, garde2, garde3 : bool;
+let
+	garde1 = pre i >= (int32 1);
+	garde2 = pre b >= (int32 1);
+	garde3 = pre b >= (int32 1);
+
+	i = a ->
+	if(etat1) then if(garde1) then pre i -(int32 1) else pre i else 
+	pre i;
+
+	b = (int32 0) -> 
+	if(etat1) then if(garde1) then pre b+(int32 1) else pre b else 
+	if(etat2) then if(garde2) then pre b-(int32 1) else pre b else 
+	if(garde3) then pre b-(int32 1) else pre b;
+
+	a = a_init -> pre a;
+
+	o1 = (int32 0) -> 
+	if(etat2) then if(garde2) then pre o1+(int32 1) else pre o1 else 
+	pre o1;
+
+	o2 = (int32 0) -> 
+	if(etat3) then if(garde3) then pre o2+(int32 1) else pre o2 else
+	pre o2;
+
+tel
+
+-- Not provable with luke-bitvec
+node top(etat1, etat2, etat3 : bool; a_init : int32) returns ( OK : bool );
+    var i, b, a, o1, o2 : int32;
+        env : bool;
+let
+   ( i, b, a, o1, o2 ) = PRODUCER_CONSUMMER(etat1, etat2, etat3, a_init );
+   env = Sofar( not (etat2 and etat3) and o1 <= (int32 32767) and o2 <= (int32 32767) ) and
+         ( not etat1 -> true ) and
+         First( a_init ) > (int32 0) and First( a_init ) < (int32 10);
+   OK = env => o1 >= (int32 0);
+   --OK = env => o2 >= (int32 0);
+
+   --%PROPERTY OK;
+   --%MAIN;
+   
+tel

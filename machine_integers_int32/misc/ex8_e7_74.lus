@@ -1,0 +1,29 @@
+node COUNTER(init,incr:int32;X,reset:bool) returns (C:int32);
+var PC: int32;
+let
+  PC = init -> pre C;
+  C = if reset then init
+      else if X then (PC+incr)
+      else PC;
+tel
+node speed(beacon,second:bool) returns (late,early:bool);
+var
+  diff,incr:int32;
+let
+  incr = if (beacon or not second) then (int32 1)
+         else if (second and not beacon) then (int32 2)
+         else (int32 0);
+  diff = COUNTER((int32 0),incr,(beacon or second),false);
+  early = false -> if pre early then (diff > (int32 0))
+                   else (diff >= (int32 10));
+  late = false -> if pre late then (diff < (int32 0))
+                  else (diff <= -(int32 10));
+tel
+node top(beacon,second:bool) returns (OK:bool);
+var late,early: bool;
+let
+  (late,early) = speed(beacon,second);
+  OK = true -> not late and pre early;
+  --%MAIN;
+  --%PROPERTY OK;
+tel

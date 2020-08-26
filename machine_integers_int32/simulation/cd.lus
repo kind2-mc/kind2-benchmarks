@@ -1,0 +1,43 @@
+--
+-- Source Bertrand Jeannet, NBAC tutorial
+--
+
+node Sofar( X : bool ) returns ( Sofar : bool );
+let
+    Sofar = X -> X and pre Sofar;
+tel
+
+node Environment(diff: int32; plus,minus: bool) returns (ok: bool);
+let
+  ok = (-(int32 4) <= diff and diff <= (int32 4)) and 
+     (if (true -> pre plus) then diff >= (int32 1) else true) and
+     (if (false -> pre minus) then diff <= -(int32 1) else true);
+tel
+
+node Controller(diff: int32) returns (speed: int32; plus,minus: bool);
+let
+  speed = (int32 0) -> pre(speed)+diff;
+  plus = speed <= (int32 9);
+  minus = speed >= (int32 11);
+tel
+
+node Property(speed: int32) returns (ok: bool);
+var cpt: int32;
+    acceptable: bool;
+let
+  acceptable = (int32 8) <= speed and speed <= (int32 12);
+  cpt = (int32 0) -> if acceptable then (int32 0) else pre(cpt)+(int32 1);
+  ok = true -> (pre cpt<=(int32 7));
+tel
+
+node top(diff:int32) returns (OK: bool);
+var speed: int32; 
+    plus,minus,realistic: bool;
+let
+  (speed,plus,minus) = Controller(diff);
+  realistic =  Environment(diff,plus,minus);
+
+  OK = Sofar( realistic and (int32 0) <= speed and speed < (int32 16) ) => Property(speed);
+  --%PROPERTY OK;
+  --%MAIN;
+tel

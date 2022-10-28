@@ -1,4 +1,0 @@
-Benchmarks from the SV-COMP repository at https://svn.sosy-lab.org/software/sv-benchmarks/trunk/clauses/
-
-The benchmarks are originally in SMTLIB Horn clause format, their transition systems are converted to a monolothic one by a tool provided by Philipp Ruemmer.
-

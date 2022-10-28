@@ -1,8 +1,0 @@
-node top (init:int32) returns (OK:bool);
-var time:int32;
-let
-  time = (int32 0) -> if pre time = (int32 5) then (int32 0) 
-              else pre time + (int32 1);
-  OK = time <(int32 0);
-  --%PROPERTY OK;
-tel

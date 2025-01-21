@@ -1,0 +1,209 @@
+type USER_location = real;
+type USER_byte = real;
+type USER_penta = real;
+type USER_realensity = real;
+type USER_tuple = struct {USER_x : USER_location; USER_y : USER_location; USER_z : USER_location};
+type USER_bit = real;
+type USER_rgb = struct {USER_b : USER_realensity; USER_g : USER_realensity; USER_r : USER_realensity};
+
+node initially (
+  signal : bool
+) returns (
+  holds : bool
+);
+let
+  holds = (signal) -> (true);
+tel
+
+node historically (
+  signal : bool
+) returns (
+  holds : bool
+);
+let
+  holds = (signal) and ((true) -> (pre (holds)));
+tel
+
+node once (
+  signal : bool
+) returns (
+  holds : bool
+);
+let
+  holds = (signal) or ((false) -> (pre (holds)));
+tel
+
+node since (
+  a : bool;
+  b : bool
+) returns (
+  holds : bool
+);
+let
+  holds = (b) or ((a) and ((false) -> (pre (holds))));
+tel
+
+node triggers (
+  a : bool;
+  b : bool
+) returns (
+  holds : bool
+);
+let
+  holds = (b) and ((a) or ((false) -> (pre (holds))));
+tel
+
+node responds (
+  a : bool;
+  b : bool;
+  n : int
+) returns (
+  holds : bool
+);
+var
+  latch : int;
+  i : int;
+  pre_state_ : int;
+  state_ : int;
+let
+  latch = (n) -> (pre (latch));
+  pre_state_ = (0) -> (pre (state_));
+  state_ = if ((pre_state_) = (0)) then (if ((not (b)) or ((a) and (b))) then (0) else (1)) else (if ((pre_state_) = (1)) then (if ((not (a)) and ((i) < (latch))) then (1) else (if ((a) and (b)) then (1) else (if ((not (a)) and ((i) >= (latch))) then (2) else (0)))) else (2));
+  i = if ((pre_state_) = (0)) then (0) else (if ((pre_state_) = (1)) then (if (not (a)) then ((pre (i)) + (1)) else (if ((a) and (b)) then (0) else (pre (i)))) else (pre (i)));
+  holds = ((state_) = (0)) or ((state_) = (1));
+tel
+
+node precedes (
+  a : bool;
+  b : bool
+) returns (
+  holds : bool
+);
+var
+  state_ : int;
+  pre_state_ : int;
+let
+  pre_state_ = (0) -> (pre (state_));
+  state_ = if ((pre_state_) = (0)) then (if (((a) and (b)) or ((not (a)) and (not (b)))) then (0) else (if ((a) and (not (b))) then (1) else (2))) else (if ((pre_state_) = (1)) then (if (b) then (0) else (1)) else (2));
+  holds = ((state_) = (0)) or ((state_) = (1));
+tel
+
+node count (
+  a : bool
+) returns (
+  c : int
+);
+let
+  c = ((0) -> (pre (c))) + (if (a) then (1) else (0));
+tel
+
+node ccount (
+  a : bool
+) returns (
+  c : int
+);
+let
+  c = if (a) then (((0) -> (pre (c))) + (1)) else (0);
+tel
+
+node btoi (
+  a : bool
+) returns (
+  c : int
+);
+let
+  c = if (a) then (1) else (0);
+tel
+
+node imported USER_ptaas (
+  cvg : bool
+) returns (
+  USER_object : USER_penta;
+  USER_spex : USER_bit;
+  USER_parm : USER_byte;
+  USER_position : USER_tuple;
+  USER_vector : USER_tuple;
+  USER_color : USER_rgb;
+  USER_emission : USER_rgb;
+  delta_USER_object : real;
+  delta_USER_spex : real;
+  delta_USER_parm : real
+);
+(*@contract
+  var counter : real = (1.0) -> ((pre (counter)) + (1.0));
+  var generated_macro_0 : real = (USER_position).USER_x;
+  var generated_macro_1 : real = (USER_position).USER_x;
+  var generated_macro_2 : real = (USER_position).USER_y;
+  var generated_macro_3 : real = (USER_position).USER_y;
+  var generated_macro_4 : real = (USER_position).USER_z;
+  var generated_macro_5 : real = (USER_position).USER_z;
+  var generated_macro_6 : real = (USER_vector).USER_x;
+  var generated_macro_7 : real = (USER_vector).USER_x;
+  var generated_macro_8 : real = (USER_vector).USER_y;
+  var generated_macro_9 : real = (USER_vector).USER_y;
+  var generated_macro_10 : real = (USER_vector).USER_z;
+  var generated_macro_11 : real = (USER_vector).USER_z;
+  var generated_macro_12 : real = (USER_color).USER_r;
+  var generated_macro_13 : real = (USER_color).USER_r;
+  var generated_macro_14 : real = (USER_color).USER_g;
+  var generated_macro_15 : real = (USER_color).USER_g;
+  var generated_macro_16 : real = (USER_color).USER_b;
+  var generated_macro_17 : real = (USER_color).USER_b;
+  var generated_macro_18 : real = (USER_emission).USER_r;
+  var generated_macro_19 : real = (USER_emission).USER_r;
+  var generated_macro_20 : real = (USER_emission).USER_g;
+  var generated_macro_21 : real = (USER_emission).USER_g;
+  var generated_macro_22 : real = (USER_emission).USER_b;
+  var generated_macro_23 : real = (USER_emission).USER_b;
+  var generated_macro_24 : real = (USER_position).USER_x;
+  var generated_macro_25 : real = (USER_position).USER_x;
+  var generated_macro_26 : real = (USER_position).USER_y;
+  var generated_macro_27 : real = (USER_position).USER_y;
+  var generated_macro_28 : real = (USER_position).USER_z;
+  var generated_macro_29 : real = (USER_position).USER_z;
+  var generated_macro_30 : real = (USER_vector).USER_x;
+  var generated_macro_31 : real = (USER_vector).USER_x;
+  var generated_macro_32 : real = (USER_vector).USER_y;
+  var generated_macro_33 : real = (USER_vector).USER_y;
+  var generated_macro_34 : real = (USER_vector).USER_z;
+  var generated_macro_35 : real = (USER_vector).USER_z;
+  var generated_macro_36 : real = (USER_color).USER_r;
+  var generated_macro_37 : real = (USER_color).USER_r;
+  var generated_macro_38 : real = (USER_color).USER_g;
+  var generated_macro_39 : real = (USER_color).USER_g;
+  var generated_macro_40 : real = (USER_color).USER_b;
+  var generated_macro_41 : real = (USER_color).USER_b;
+  var generated_macro_42 : real = (USER_emission).USER_r;
+  var generated_macro_43 : real = (USER_emission).USER_r;
+  var generated_macro_44 : real = (USER_emission).USER_g;
+  var generated_macro_45 : real = (USER_emission).USER_g;
+  var generated_macro_46 : real = (USER_emission).USER_b;
+  var generated_macro_47 : real = (USER_emission).USER_b;
+  var ok_delta_USER_object : bool = ((0.0) <= (delta_USER_object)) and ((delta_USER_object) <= (1.0));
+  var ok_coverage_improved_implies_delta_USER_object : bool = ((((pre (delta_USER_object)) <= (0.1)) and (not (cvg))) => ((USER_object) < (0.0))) and ((((pre (delta_USER_object)) >= (0.9)) and (not (cvg))) => ((USER_object) > (5.0)));
+  var USER_object_type : bool = (((pre (delta_USER_object)) > (0.1)) and ((pre (delta_USER_object)) < (0.9))) => (((0.0) <= (USER_object)) and ((USER_object) <= (4.0)));
+  var ok_delta_USER_spex : bool = ((0.0) <= (delta_USER_spex)) and ((delta_USER_spex) <= (1.0));
+  var ok_coverage_improved_implies_delta_USER_spex : bool = ((((pre (delta_USER_spex)) <= (0.1)) and (not (cvg))) => ((USER_spex) < (0.0))) and ((((pre (delta_USER_spex)) >= (0.9)) and (not (cvg))) => ((USER_spex) > (2.0)));
+  var USER_spex_type : bool = (((pre (delta_USER_spex)) > (0.1)) and ((pre (delta_USER_spex)) < (0.9))) => (((0.0) <= (USER_spex)) and ((USER_spex) <= (1.0)));
+  var ok_delta_USER_parm : bool = ((0.0) <= (delta_USER_parm)) and ((delta_USER_parm) <= (1.0));
+  var ok_coverage_improved_implies_delta_USER_parm : bool = ((((pre (delta_USER_parm)) <= (0.1)) and (not (cvg))) => ((USER_parm) < (0.0))) and ((((pre (delta_USER_parm)) >= (0.9)) and (not (cvg))) => ((USER_parm) > (255.0)));
+  var USER_parm_type : bool = (((pre (delta_USER_parm)) > (0.1)) and ((pre (delta_USER_parm)) < (0.9))) => (((0.0) <= (USER_parm)) and ((USER_parm) <= (255.0)));
+  var USER_position_x_type : bool = ((-(256.0)) <= (generated_macro_0)) and ((generated_macro_1) <= (256.0));
+  var USER_position_y_type : bool = ((-(256.0)) <= (generated_macro_2)) and ((generated_macro_3) <= (256.0));
+  var USER_position_z_type : bool = ((-(256.0)) <= (generated_macro_4)) and ((generated_macro_5) <= (256.0));
+  var USER_vector_x_type : bool = ((-(256.0)) <= (generated_macro_6)) and ((generated_macro_7) <= (256.0));
+  var USER_vector_y_type : bool = ((-(256.0)) <= (generated_macro_8)) and ((generated_macro_9) <= (256.0));
+  var USER_vector_z_type : bool = ((-(256.0)) <= (generated_macro_10)) and ((generated_macro_11) <= (256.0));
+  var USER_color_r_type : bool = ((0.0) <= (generated_macro_12)) and ((generated_macro_13) <= (256.0));
+  var USER_color_g_type : bool = ((0.0) <= (generated_macro_14)) and ((generated_macro_15) <= (256.0));
+  var USER_color_b_type : bool = ((0.0) <= (generated_macro_16)) and ((generated_macro_17) <= (256.0));
+  var USER_emission_r_type : bool = ((0.0) <= (generated_macro_18)) and ((generated_macro_19) <= (256.0));
+  var USER_emission_g_type : bool = ((0.0) <= (generated_macro_20)) and ((generated_macro_21) <= (256.0));
+  var USER_emission_b_type : bool = ((0.0) <= (generated_macro_22)) and ((generated_macro_23) <= (256.0));
+  var constraints : bool = historically((USER_object_type) and ((USER_spex_type) and ((USER_parm_type) and ((USER_position_x_type) and ((USER_position_y_type) and ((USER_position_z_type) and ((USER_vector_x_type) and ((USER_vector_y_type) and ((USER_vector_z_type) and ((USER_color_r_type) and ((USER_color_g_type) and ((USER_color_b_type) and ((USER_emission_r_type) and ((USER_emission_g_type) and (USER_emission_b_type)))))))))))))));
+  var ok : bool = (((((ok_delta_USER_parm) and (ok_delta_USER_spex)) and (ok_delta_USER_object)) and (ok_coverage_improved_implies_delta_USER_parm)) and (ok_coverage_improved_implies_delta_USER_spex)) and (ok_coverage_improved_implies_delta_USER_object);
+  guarantee ok;
+  guarantee constraints;
+*)
+
+

@@ -1,0 +1,13 @@
+node imported diagonal (
+  posx : int
+) returns (
+  posy : int
+);
+(*@contract
+  var ok : bool = (((posy) >= ((posx) - (2))) and ((posy) <= ((posx) + (2)))) -> (((t1) and (t2)) => (((posy) >= ((posx) - (2))) and ((posy) <= ((posx) + (2)))));
+  var t1 : bool = (((pre (posx)) = ((posx) + (1))) or ((pre (posx)) = ((posx) - (1)))) or ((pre (posx)) = (posx));
+  var t2 : bool = (((pre (posy)) = ((posy) + (1))) or ((pre (posy)) = ((posy) - (1)))) or ((pre (posy)) = (posy));
+  guarantee ok;
+*)
+
+

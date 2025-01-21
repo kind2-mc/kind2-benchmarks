@@ -1,0 +1,22 @@
+node imported bounded_evasion_ints (
+  adv_x : int;
+  adv_y : int
+) returns (
+  rbt_x : int;
+  rbt_y : int
+);
+(*@contract
+  var ok1 : bool = ((rbt_x) = (0)) -> (((rbt_x) >= ((pre (rbt_x)) - (1))) and ((rbt_x) <= ((pre (rbt_x)) + (1))));
+  var ok2 : bool = ((rbt_y) = (0)) -> (((rbt_y) >= ((pre (rbt_y)) - (1))) and ((rbt_y) <= ((pre (rbt_y)) + (1))));
+  var ok3 : bool = ((rbt_x) >= (0)) and ((rbt_x) <= (6));
+  var ok4 : bool = ((rbt_y) >= (0)) and ((rbt_y) <= (6));
+  var ok5 : bool = (not ((rbt_x) = (adv_x))) and (not ((rbt_y) = (adv_y)));
+  assume (((adv_x) = (6)) and ((adv_y) = (6))) -> (((((adv_y) >= ((pre (adv_y)) - (1))) and ((adv_y) <= ((pre (adv_y)) + (1)))) and ((adv_x) >= ((pre (adv_x)) - (1)))) and ((adv_x) <= ((pre (adv_x)) + (1))));
+  guarantee ok1;
+  guarantee ok2;
+  guarantee ok3;
+  guarantee ok4;
+  guarantee ok5;
+*)
+
+

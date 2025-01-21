@@ -1,0 +1,50 @@
+node imported Movie_Rental_Service (
+  cvg : bool
+) returns (
+  mainC : real;
+  movieID : real;
+  flag : real;
+  passLength : real;
+  length : real;
+  genre : real;
+  rating : real;
+  year : real;
+  admin : real;
+  passCha0 : real;
+  passCha1 : real;
+  passCha2 : real;
+  passCha3 : real;
+  passCha4 : real;
+  delta_mainC : real;
+  delta_admin : real;
+  delta_movieID : real;
+  delta_year : real
+);
+(*@contract
+  var guarantee_delta_mainC : bool = ((0.0) <= (delta_mainC)) and ((delta_mainC) <= (1.0));
+  var guarantee_delta_admin : bool = ((0.0) <= (delta_admin)) and ((delta_admin) <= (1.0));
+  var guarantee_delta_movieID : bool = ((0.0) <= (delta_movieID)) and ((delta_movieID) <= (1.0));
+  var guarantee_delta_year : bool = ((0.0) <= (delta_year)) and ((delta_year) <= (1.0));
+  var guarantee_coverage_improvement_implies_delta_mainC : bool = ((((pre (delta_mainC)) < (0.1)) and (not (cvg))) => ((mainC) < (1.0))) and ((((pre (delta_mainC)) >= (0.9)) and (not (cvg))) => ((mainC) > (5.0)));
+  var guarantee_coverage_improvement_implies_delta_admin : bool = ((((pre (delta_admin)) < (0.1)) and (not (cvg))) => ((admin) < (1.0))) and ((((pre (delta_admin)) >= (0.9)) and (not (cvg))) => ((admin) > (5.0)));
+  var guarantee_coverage_improvement_implies_delta_movieID : bool = ((((pre (delta_movieID)) < (0.1)) and (not (cvg))) => ((movieID) < (0.0))) and ((((pre (delta_movieID)) >= (0.9)) and (not (cvg))) => ((movieID) > (100.0)));
+  var guarantee_coverage_improvement_implies_delta_year : bool = ((((pre (delta_year)) < (0.1)) and (not (cvg))) => ((year) < (1800.0))) and ((((pre (delta_year)) >= (0.9)) and (not (cvg))) => ((year) > (2015.0)));
+  var ok1 : bool = (((pre (delta_mainC)) >= (0.1)) and ((pre (delta_mainC)) <= (0.9))) => (((mainC) >= (1.0)) and ((mainC) <= (5.0)));
+  var ok2 : bool = (((pre (delta_admin)) >= (0.1)) and ((pre (delta_admin)) <= (0.9))) => (((admin) >= (1.0)) and ((admin) <= (5.0)));
+  var ok3 : bool = (((pre (delta_movieID)) >= (0.1)) and ((pre (delta_movieID)) <= (0.9))) => (((movieID) >= (1.0)) and ((movieID) <= (100.0)));
+  var ok4 : bool = (((pre (delta_year)) >= (0.1)) and ((pre (delta_year)) <= (0.9))) => (((year) >= (1800.0)) and ((year) <= (2015.0)));
+  var ok5 : bool = ((0.0) <= (flag)) and ((flag) <= (1.0));
+  var ok6 : bool = ((((((((((32.0) <= (passCha0)) and ((passCha0) <= (126.0))) and ((32.0) <= (passCha1))) and ((passCha1) <= (126.0))) and ((32.0) <= (passCha2))) and ((passCha2) <= (126.0))) and ((32.0) <= (passCha3))) and ((passCha3) <= (126.0))) and ((32.0) <= (passCha4))) and ((passCha4) <= (126.0));
+  var ok7 : bool = (((((((guarantee_delta_mainC) and (guarantee_delta_admin)) and (guarantee_delta_movieID)) and (guarantee_delta_year)) and (guarantee_coverage_improvement_implies_delta_admin)) and (guarantee_coverage_improvement_implies_delta_movieID)) and (guarantee_coverage_improvement_implies_delta_mainC)) and (guarantee_coverage_improvement_implies_delta_year);
+  var ok8 : bool = ((1.0) <= (length)) and ((length) <= (65.0));
+  guarantee ok1;
+  guarantee ok2;
+  guarantee ok3;
+  guarantee ok4;
+  guarantee ok5;
+  guarantee ok6;
+  guarantee ok7;
+  guarantee ok8;
+*)
+
+

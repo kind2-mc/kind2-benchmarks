@@ -1,0 +1,14 @@
+node imported follow (
+
+) returns (
+  dist_x : int;
+  dist_y : int
+);
+(*@contract
+  var t1 : bool = (((pre (dist_x)) = ((dist_x) - (1))) or ((pre (dist_x)) = ((dist_x) + (1)))) or ((pre (dist_x)) = (dist_x));
+  var t2 : bool = (((pre (dist_y)) = ((dist_y) - (1))) or ((pre (dist_y)) = ((dist_y) + (1)))) or ((pre (dist_y)) = (dist_y));
+  var ok : bool = (((dist_y) = (0)) and ((dist_x) = (0))) -> (((t1) and (t2)) => (((((dist_y) = (0)) and ((dist_x) <= (2))) or (((dist_x) = (0)) and ((dist_y) <= (2)))) or (((dist_x) <= (1)) and ((dist_y) <= (1)))));
+  guarantee ok;
+*)
+
+

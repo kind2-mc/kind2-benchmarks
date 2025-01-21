@@ -1,0 +1,13 @@
+node imported ex2 (
+  x1 : real;
+  x2 : real
+) returns (
+  y : real
+);
+(*@contract
+  var ok : bool = ((((0.0) < (y)) and ((y) < (1.0))) and ((y) <> (x1))) and ((y) <> (x2));
+  assume ((((0.0) < (x1)) and ((x1) < (1.0))) and ((0.0) < (x2))) and ((x2) < (1.0));
+  guarantee ok;
+*)
+
+

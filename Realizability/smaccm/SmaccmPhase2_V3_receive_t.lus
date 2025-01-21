@@ -1,0 +1,12 @@
+node imported main (
+  mavlink_in___EVENT_ : bool
+) returns (
+  nav_mav___EVENT_ : bool;
+  user_input_mav___EVENT_ : bool
+);
+(*@contract
+  var __GUARANTEE0 : bool = ((nav_mav___EVENT_) or (user_input_mav___EVENT_)) => (mavlink_in___EVENT_);
+  guarantee __GUARANTEE0;
+*)
+
+

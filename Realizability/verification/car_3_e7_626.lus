@@ -1,0 +1,22 @@
+node imported top (
+  m : bool;
+  s : bool
+) returns (
+  V24_toofast : bool;
+  V25_stop : bool;
+  V26_bump : bool;
+  V27_dist : int;
+  V28_speed : int;
+  V29_time : int;
+  V30_move : bool;
+  V31_second : bool;
+  V32_meter : bool
+);
+(*@contract
+  var OK : bool = (V33_env) => ((V28_speed) < (4));
+  var V33_env : bool = (V90_X) -> ((V90_X) or (pre (V33_env)));
+  var V90_X : bool = not ((m) and (s));
+  guarantee OK;
+*)
+
+

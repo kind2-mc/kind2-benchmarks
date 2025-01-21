@@ -1,0 +1,21 @@
+node imported square (
+  envposx : int;
+  envposy : int
+) returns (
+  posx : int;
+  posy : int
+);
+(*@contract
+  var ok1 : bool = ((posx) >= (-(4))) and ((posx) <= (4));
+  var ok2 : bool = ((posy) >= (-(4))) and ((posy) <= (4));
+  var ok3 : bool = ((posx) = (0)) -> (((-(1)) <= ((posx) - (envposx))) and (((posx) - (envposx)) <= (1)));
+  var ok4 : bool = ((posy) = (0)) -> (((-(1)) <= ((posy) - (envposy))) and (((posy) - (envposy)) <= (1)));
+  assume (true) -> (((-(1)) <= ((envposx) - (pre (posx)))) and (((envposx) - (pre (posx))) <= (1)));
+  assume (true) -> (((-(1)) <= ((envposy) - (pre (posy)))) and (((envposy) - (pre (posy))) <= (1)));
+  guarantee ok1;
+  guarantee ok2;
+  guarantee ok3;
+  guarantee ok4;
+*)
+
+

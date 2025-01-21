@@ -1,0 +1,12 @@
+node imported main (
+  Input1 : real;
+  Input2 : real
+) returns (
+  Output : real
+);
+(*@contract
+  var __GUARANTEE0 : bool = (Output) = ((Input1) + (Input2));
+  guarantee __GUARANTEE0;
+*)
+
+

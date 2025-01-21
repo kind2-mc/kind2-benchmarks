@@ -1,0 +1,24 @@
+node Agree_Nodes__tF (
+  n : int
+) returns (
+  r : bool
+);
+var
+  c : int;
+let
+  c = (1) -> ((pre (c)) + (1));
+  r = (c) <= (n);
+tel
+
+node imported main (
+  I : bool
+) returns (
+  O : bool
+);
+(*@contract
+  var __GUARANTEE0 : bool = (O) = (if (ttF) then (false) else ((false) -> ((not (pre (I))) and (I))));
+  var ttF : bool = Agree_Nodes__tF(2);
+  guarantee __GUARANTEE0;
+*)
+
+

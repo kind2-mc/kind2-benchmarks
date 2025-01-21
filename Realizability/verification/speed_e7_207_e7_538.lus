@@ -1,0 +1,16 @@
+node imported top (
+  beacon : bool;
+  second : bool
+) returns (
+  V63_diff : int;
+  V64_incr : int;
+  V19_late : bool;
+  V20_early : bool;
+  V65_PC : int
+);
+(*@contract
+  var OK : bool = not ((V19_late) and (V20_early));
+  guarantee OK;
+*)
+
+

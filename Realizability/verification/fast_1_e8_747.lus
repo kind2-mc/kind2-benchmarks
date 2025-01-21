@@ -1,0 +1,31 @@
+node imported top (
+  igsw : bool;
+  ccd : bool;
+  cconoff : bool;
+  bpa : bool;
+  cccanc : bool;
+  battok : bool;
+  gearok : bool;
+  qfok : bool;
+  sdok : bool;
+  accok : bool;
+  ccseti : bool;
+  ccsetd : bool;
+  ccr : bool;
+  vs : int
+) returns (
+  V82_ccont : bool;
+  V294_ob : bool;
+  V295_pnb : bool;
+  V83_cca : bool;
+  V293_ccall : bool;
+  V296_XsinceY : bool;
+  V297_cca : bool;
+  _flatten0 : bool
+);
+(*@contract
+  var OK : bool = if ((false) -> ((V83_cca) and (not (pre (V83_cca))))) then ((((false) -> ((ccseti) and (not (pre (ccseti))))) or ((false) -> ((ccsetd) and (not (pre (ccsetd)))))) or ((false) -> ((ccr) and (not (pre (ccr)))))) else (true);
+  guarantee OK;
+*)
+
+

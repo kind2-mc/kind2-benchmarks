@@ -1,0 +1,17 @@
+type software_types__userinput_result__impl = struct {pitch : real; roll : real; throttle : real; time : int; xsource : int; yaw : real};
+type software_types__control_law__impl = struct {armed_mode : int; autothr_source : int; head_source : int; stab_source : int; thr_mode : int; time : int; ui_source : int; yaw_mode : int};
+
+node imported main (
+  mavlink_in___EVENT_ : bool
+) returns (
+  user_input___EVENT_ : bool;
+  user_input : software_types__userinput_result__impl;
+  control_law_out___EVENT_ : bool;
+  control_law_out : software_types__control_law__impl
+);
+(*@contract
+  var __GUARANTEE0 : bool = ((control_law_out___EVENT_) or (user_input___EVENT_)) => (mavlink_in___EVENT_);
+  guarantee __GUARANTEE0;
+*)
+
+

@@ -1,0 +1,22 @@
+type software_types__motors_data__impl = struct {backleft : real; backright : real; frontleft : real; frontright : real};
+type software_types__controloutput__impl = struct {armed : bool; pitch : real; roll : real; throttle : real; time : int; yaw : real};
+type software_types__control_law__impl = struct {armed_mode : int; autothr_source : int; head_source : int; stab_source : int; thr_mode : int; time : int; ui_source : int; yaw_mode : int};
+
+node imported main (
+  time : real;
+  control_in___EVENT_ : bool;
+  control_in : software_types__controloutput__impl;
+  control_law_in___EVENT_ : bool;
+  control_law_in : software_types__control_law__impl
+) returns (
+  motors___EVENT_ : bool;
+  motors : software_types__motors_data__impl
+);
+(*@contract
+  var __GUARANTEE0 : bool = ((motors) = (software_types__motors_data__impl {backleft = 0.0; backright = 0.0; frontleft = 0.0; frontright = 0.0})) -> (true);
+  var __GUARANTEE1 : bool = (((control_law_in).armed_mode) = (1)) => ((motors) = (software_types__motors_data__impl {backleft = 0.0; backright = 0.0; frontleft = 0.0; frontright = 0.0}));
+  guarantee __GUARANTEE0;
+  guarantee __GUARANTEE1;
+*)
+
+

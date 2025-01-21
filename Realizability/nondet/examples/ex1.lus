@@ -1,0 +1,12 @@
+node imported ex1 (
+  x : int
+) returns (
+  y1 : int;
+  y2 : int
+);
+(*@contract
+  var ok : bool = ((((x) <= (2)) and ((y1) > ((-(3)) * (x)))) and ((y2) < (x))) or ((((x) >= (-(1))) and ((y1) < ((5) * (x)))) and ((y2) > (x)));
+  guarantee ok;
+*)
+
+

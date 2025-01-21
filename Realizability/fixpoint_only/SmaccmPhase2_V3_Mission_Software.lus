@@ -1,0 +1,27 @@
+node imported main (
+  mission_in___EVENT_ : bool;
+  enc_mavlink_in___EVENT_ : bool
+) returns (
+  time : real;
+  next_time : real;
+  mission_out___EVENT_ : bool;
+  enc_mavlink_out___EVENT_ : bool
+);
+(*@contract
+  var __GUARANTEE0 : bool = (true) -> ((((time) - (pre (time_of_last_can))) < (20.0)) => (not (mission_out___EVENT_)));
+  var __GUARANTEE1 : bool = (mission_out___EVENT_) => (mavlink_received_within_bound);
+  var __GUARANTEE2 : bool = ((time) = (0.0)) -> (((true) and ((time) >= (0.0))) and ((true) -> ((time) > (pre (time)))));
+  var __GUARANTEE3 : bool = ((next_time) > (time)) and ((true) -> ((pre (next_time)) = (time)));
+  var __GUARANTEE4 : bool = ((5.0) <= ((next_time) - (time))) and (((next_time) - (time)) < (50.0));
+  var last_mavlink_received_time : real = if (enc_mavlink_in___EVENT_) then (time) else ((0.0) -> (pre (last_mavlink_received_time)));
+  var mavlink_received_in_past : bool = (enc_mavlink_in___EVENT_) -> ((pre (mavlink_received_in_past)) or (enc_mavlink_in___EVENT_));
+  var mavlink_received_within_bound : bool = (mavlink_received_in_past) and (((time) - (last_mavlink_received_time)) < (150.0));
+  var time_of_last_can : real = ((-(1.0)) * (20.0)) -> (if (mission_out___EVENT_) then (time) else (pre (time_of_last_can)));
+  guarantee __GUARANTEE0;
+  guarantee __GUARANTEE1;
+  guarantee __GUARANTEE2;
+  guarantee __GUARANTEE3;
+  guarantee __GUARANTEE4;
+*)
+
+

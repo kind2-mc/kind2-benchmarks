@@ -1,0 +1,34 @@
+const C = 2.0;
+
+node imported game (
+  i1 : real;
+  i2 : real;
+  i3 : real;
+  i4 : real;
+  i5 : real
+) returns (
+  e : int
+);
+(*@contract
+  var b1 : real = (0.0) -> (if (((e) = (5)) or ((e) = (1))) then (i1) else ((pre (b1)) + (i1)));
+  var b2 : real = (0.0) -> (if (((e) = (1)) or ((e) = (2))) then (i2) else ((pre (b2)) + (i2)));
+  var b3 : real = (0.0) -> (if (((e) = (2)) or ((e) = (3))) then (i3) else ((pre (b3)) + (i3)));
+  var b4 : real = (0.0) -> (if (((e) = (3)) or ((e) = (4))) then (i4) else ((pre (b4)) + (i4)));
+  var b5 : real = (0.0) -> (if (((e) = (4)) or ((e) = (5))) then (i5) else ((pre (b5)) + (i5)));
+  var ok1 : bool = (b1) <= (C);
+  var ok2 : bool = (b2) <= (C);
+  var ok3 : bool = (b3) <= (C);
+  var ok4 : bool = (b4) <= (C);
+  var ok5 : bool = (b5) <= (C);
+  var ok6 : bool = (((((e) = (1)) or ((e) = (2))) or ((e) = (3))) or ((e) = (4))) or ((e) = (5));
+  assume (((((i1) >= (0.0)) and ((i2) >= (0.0))) and ((i3) >= (0.0))) and ((i4) >= (0.0))) and ((i5) >= (0.0));
+  assume (((((i1) + (i2)) + (i3)) + (i4)) + (i5)) = (1.0);
+  guarantee ok1;
+  guarantee ok2;
+  guarantee ok3;
+  guarantee ok4;
+  guarantee ok5;
+  guarantee ok6;
+*)
+
+

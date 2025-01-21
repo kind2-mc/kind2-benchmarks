@@ -1,0 +1,19 @@
+node imported main (
+  input1___EVENT_ : bool;
+  input1 : int;
+  input2___EVENT_ : bool;
+  input2 : int
+) returns (
+  output___EVENT_ : bool;
+  output : int
+);
+(*@contract
+  var __GUARANTEE0 : bool = (output) = ((input1_hold) + (input2_hold));
+  var __GUARANTEE1 : bool = (output___EVENT_) = ((input1___EVENT_) or (input2___EVENT_));
+  var input1_hold : int = if (input1___EVENT_) then (input1) else ((0) -> (pre (input1_hold)));
+  var input2_hold : int = if (input2___EVENT_) then (input2) else ((0) -> (pre (input2_hold)));
+  guarantee __GUARANTEE0;
+  guarantee __GUARANTEE1;
+*)
+
+

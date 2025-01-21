@@ -1,0 +1,15 @@
+node imported top (
+  x : int;
+  y : int
+) returns (
+  z : bool
+);
+(*@contract
+  var guarantee1 : bool = (pre ((x) > (y))) => (z);
+  var guarantee2 : bool = (pre ((x) <= (y))) => (not (z));
+  assume (x) <> (y);
+  guarantee guarantee1;
+  guarantee guarantee2;
+*)
+
+

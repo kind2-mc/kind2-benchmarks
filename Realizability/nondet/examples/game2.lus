@@ -1,0 +1,13 @@
+node imported game (
+  x1 : int;
+  x2 : int
+) returns (
+  y1 : int;
+  y2 : int
+);
+(*@contract
+  var ok : bool = (((y1) + (y2)) < ((x1) + (x2))) and ((y1) <> (1));
+  guarantee ok;
+*)
+
+

@@ -1,0 +1,20 @@
+node imported top (
+  etat1 : bool;
+  etat2 : bool;
+  etat3 : bool;
+  a_init : int
+) returns (
+  V26_i : int;
+  V28_a : int;
+  V70_garde1 : bool
+);
+(*@contract
+  var OK : bool = (V31_env) => ((V26_i) >= (0));
+  var V31_env : bool = ((V79_Sofar) and ((not (etat1)) -> (true))) and ((V87_First) > (0));
+  var V74_X : bool = not ((etat2) and (etat3));
+  var V79_Sofar : bool = (V74_X) -> ((V74_X) and (pre (V79_Sofar)));
+  var V87_First : int = (a_init) -> (pre (V87_First));
+  guarantee OK;
+*)
+
+

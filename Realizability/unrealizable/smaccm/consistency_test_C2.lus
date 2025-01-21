@@ -1,0 +1,17 @@
+type DATATYPES__IO__Impl = struct {field : int};
+
+node imported main (
+  Input : DATATYPES__IO__Impl
+) returns (
+  Outp : DATATYPES__IO__Impl
+);
+(*@contract
+  var __GUARANTEE0 : bool = gt_0;
+  var __GUARANTEE1 : bool = eq_in;
+  var eq_in : bool = ((Outp).field) = ((Input).field);
+  var gt_0 : bool = ((Outp).field) < (0);
+  guarantee __GUARANTEE0;
+  guarantee __GUARANTEE1;
+*)
+
+

@@ -1,0 +1,17 @@
+type turn = enum {P0, P1};
+
+node imported box (
+
+) returns (
+  posx : int;
+  posy : int
+);
+(*@contract
+  var turn : turn = (P0) -> (if ((pre (turn)) = (P0)) then (P1) else (P0));
+  var t1 : bool = (((((posy) = (pre (posy))) or ((pre (posy)) = ((posy) + (1)))) or ((pre (posy)) = ((posy) - (1)))) and ((posx) = (pre (posx)))) and ((turn) = (P0));
+  var t2 : bool = (((((posx) = (pre (posx))) or ((pre (posx)) = ((posx) + (1)))) or ((pre (posx)) = ((posx) - (1)))) and ((posy) = (pre (posy)))) and ((turn) = (P1));
+  var ok : bool = ((posy) = (0)) -> (((t1) or (t2)) => (((posy) >= (-(1))) and ((posy) <= (1))));
+  guarantee ok;
+*)
+
+

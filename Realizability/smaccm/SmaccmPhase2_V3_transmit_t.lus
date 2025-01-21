@@ -1,0 +1,18 @@
+type software_types__controloutput__impl = struct {armed : bool; pitch : real; roll : real; throttle : real; time : int; yaw : real};
+type software_types__position__impl = struct {alt : int; dop : real; fix : int; heading : real; lat : int; lon : int; num_sv : int; time : int; vdown : int; veast : int; vground : int; vnorth : int};
+
+node imported main (
+  sensor_data___EVENT_ : bool;
+  sensor_data : software_types__position__impl;
+  control_data___EVENT_ : bool;
+  control_data : software_types__controloutput__impl;
+  motmix_data___EVENT_ : bool
+) returns (
+  mavlink_out___EVENT_ : bool
+);
+(*@contract
+  var __GUARANTEE0 : bool = (mavlink_out___EVENT_) => (((sensor_data___EVENT_) or (control_data___EVENT_)) or (motmix_data___EVENT_));
+  guarantee __GUARANTEE0;
+*)
+
+

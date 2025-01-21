@@ -1,0 +1,89 @@
+node defs__initially_true (
+  b : bool
+) returns (
+  result : bool
+);
+let
+  result = (b) -> (pre (true));
+tel
+
+node defs__rising_edge (
+  signal : bool
+) returns (
+  re : bool
+);
+let
+  re = (signal) and (not ((false) -> (pre (signal))));
+tel
+
+node defs__is_cooking (
+  m : int
+) returns (
+  _outvar : bool
+);
+let
+  _outvar = (m) = (3);
+tel
+
+node defs__is_setup (
+  m : int
+) returns (
+  _outvar : bool
+);
+let
+  _outvar = (m) = (1);
+tel
+
+node defs__is_suspended (
+  m : int
+) returns (
+  _outvar : bool
+);
+let
+  _outvar = (m) = (2);
+tel
+
+node defs__is_running (
+  m : int
+) returns (
+  _outvar : bool
+);
+let
+  _outvar = ((m) = (3)) or ((m) = (2));
+tel
+
+node imported main (
+  start : bool;
+  clear : bool;
+  seconds_to_cook : int;
+  door_closed : bool
+) returns (
+  cooking_mode : int
+);
+(*@contract
+  var __GUARANTEE0 : bool = ((cooking_mode) >= (1)) and ((cooking_mode) <= (3));
+  var __GUARANTEE1 : bool = (is_cooking) => (door_closed);
+  var __GUARANTEE2 : bool = defs__initially_true(is_setup);
+  var __GUARANTEE3 : bool = ((defs__rising_edge(is_running)) and (door_closed)) => (is_cooking);
+  var __GUARANTEE4 : bool = ((defs__rising_edge(is_running)) and (not (door_closed))) => (is_suspended);
+  var __GUARANTEE5 : bool = (true) -> (((defs__rising_edge(clear)) and (defs__is_cooking(pre (cooking_mode)))) => (not (is_cooking)));
+  var __GUARANTEE6 : bool = ((defs__rising_edge(clear)) and (is_suspended)) => (is_setup);
+  var __GUARANTEE7 : bool = (((is_suspended) and (defs__rising_edge(start))) and (door_closed)) => (is_cooking);
+  var __GUARANTEE8 : bool = ((seconds_to_cook) = (0)) => (is_setup);
+  var is_cooking : bool = defs__is_cooking(cooking_mode);
+  var is_setup : bool = defs__is_setup(cooking_mode);
+  var is_suspended : bool = defs__is_suspended(cooking_mode);
+  var is_running : bool = defs__is_running(cooking_mode);
+  assume (seconds_to_cook) >= (0);
+  guarantee __GUARANTEE0;
+  guarantee __GUARANTEE1;
+  guarantee __GUARANTEE2;
+  guarantee __GUARANTEE3;
+  guarantee __GUARANTEE4;
+  guarantee __GUARANTEE5;
+  guarantee __GUARANTEE6;
+  guarantee __GUARANTEE7;
+  guarantee __GUARANTEE8;
+*)
+
+

@@ -1,0 +1,35 @@
+type software_types__Flight_Control_Commands__i = struct {ppm0 : real; ppm1 : real; ppm2 : real; ppm3 : real; ppm4 : real; ppm5 : real; ppm6 : real; ppm7 : real};
+type software_types__Motion_Data__Impl = struct {vertical_speed : real};
+
+node imported main (
+  sensors_group__motion : software_types__Motion_Data__Impl;
+  sensors_group__gps___EVENT_ : bool;
+  mission_in___EVENT_ : bool;
+  ppm_in___EVENT_ : bool;
+  ppm_in : software_types__Flight_Control_Commands__i
+) returns (
+  time : real;
+  next_time : real;
+  control_mode : int;
+  mavlink_armed_in_past : bool;
+  ppm_armed_in_past : bool;
+  mission_out___EVENT_ : bool
+);
+(*@contract
+  var __GUARANTEE0 : bool = ((((time) = (0.0)) -> (true)) and ((time) >= (0.0))) and ((true) -> ((time) > (pre (time))));
+  var __GUARANTEE1 : bool = ((next_time) > (time)) and ((true) -> ((pre (next_time)) = (time)));
+  var __GUARANTEE2 : bool = ((5.0) <= ((next_time) - (time))) and (((next_time) - (time)) < (50.0));
+  var __GUARANTEE3 : bool = ((((time) - (time_of_last_ppm)) > (500.0)) and (((time) - (time_of_last_can)) > (500.0))) => (((control_mode) = (3)) or ((control_mode) = (1)));
+  var __GUARANTEE4 : bool = ((((time_of_last_ppm) <= (time)) and ((time_of_last_can) <= (time))) and ((time_of_last_ppm) >= (0.0))) and ((time_of_last_can) >= (0.0));
+  var __GUARANTEE5 : bool = ((control_mode) = (2)) => ((mavlink_armed_in_past) or (ppm_armed_in_past));
+  var time_of_last_can : real = (0.0) -> (if (mission_in___EVENT_) then (time) else (pre (time_of_last_can)));
+  var time_of_last_ppm : real = (0.0) -> (if (ppm_in___EVENT_) then (time) else (pre (time_of_last_ppm)));
+  guarantee __GUARANTEE0;
+  guarantee __GUARANTEE1;
+  guarantee __GUARANTEE2;
+  guarantee __GUARANTEE3;
+  guarantee __GUARANTEE4;
+  guarantee __GUARANTEE5;
+*)
+
+

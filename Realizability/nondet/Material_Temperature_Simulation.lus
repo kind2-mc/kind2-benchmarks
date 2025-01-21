@@ -1,0 +1,55 @@
+node imported Material_Temperature_Simulation (
+  cvg : bool
+) returns (
+  material : real;
+  Init : real;
+  runTime : real;
+  xDim : real;
+  yDim : real;
+  zDim : real;
+  isoFlag : real;
+  constEnFlag : real;
+  tmod : real;
+  val : real;
+  delta_material : real;
+  delta_Init : real;
+  delta_xDim : real;
+  delta_yDim : real;
+  delta_zDim : real;
+  delta_val : real
+);
+(*@contract
+  var guarantee_delta_material : bool = ((0.0) <= (delta_material)) and ((delta_material) <= (1.0));
+  var guarantee_cvg_material : bool = ((((pre (delta_material)) <= (0.1)) and (not (cvg))) => (((material) >= (-(100.0))) and ((material) < (1.0)))) and ((((pre (delta_material)) >= (0.9)) and (not (cvg))) => (((material) > (4.0)) and ((material) <= (100.0))));
+  var ok1 : bool = (((pre (delta_material)) > (0.1)) and ((pre (delta_material)) < (0.9))) => (((material) >= (1.0)) and ((material) <= (4.0)));
+  var guarantee_delta_Init : bool = ((0.0) <= (delta_Init)) and ((delta_Init) <= (1.0));
+  var ok2 : bool = (((pre (delta_Init)) < (0.5)) => ((Init) < (0.0))) and (((pre (delta_Init)) >= (0.5)) => ((Init) >= (0.0)));
+  var ok3 : bool = ((tmod) >= (-(25.0))) and ((tmod) <= (25.0));
+  var guarantee_delta_xDim : bool = ((0.0) <= (delta_xDim)) and ((delta_xDim) <= (1.0));
+  var guarantee_cvg_xDim : bool = ((((pre (delta_xDim)) <= (0.1)) and (not (cvg))) => (((-(100.0)) <= (xDim)) and ((xDim) < (1.0)))) and ((((pre (delta_xDim)) >= (0.9)) and (not (cvg))) => (((xDim) > (15.0)) and ((xDim) <= (100.0))));
+  var ok4 : bool = (((pre (delta_xDim)) > (0.1)) and ((pre (delta_xDim)) < (0.9))) => (((xDim) >= (1.0)) and ((xDim) <= (15.0)));
+  var guarantee_delta_yDim : bool = ((0.0) <= (delta_yDim)) and ((delta_yDim) <= (1.0));
+  var guarantee_cvg_yDim : bool = ((((pre (delta_yDim)) <= (0.1)) and (not (cvg))) => (((-(100.0)) <= (yDim)) and ((yDim) < (1.0)))) and ((((pre (delta_yDim)) >= (0.9)) and (not (cvg))) => (((yDim) > (15.0)) and ((yDim) <= (100.0))));
+  var ok5 : bool = (((pre (delta_yDim)) > (0.1)) and ((pre (delta_yDim)) < (0.9))) => (((yDim) >= (1.0)) and ((yDim) <= (15.0)));
+  var guarantee_delta_zDim : bool = ((0.0) <= (delta_zDim)) and ((delta_zDim) <= (1.0));
+  var guarantee_cvg_zDim : bool = ((((pre (delta_zDim)) <= (0.1)) and (not (cvg))) => (((-(100.0)) <= (zDim)) and ((zDim) < (1.0)))) and ((((pre (delta_zDim)) >= (0.9)) and (not (cvg))) => (((zDim) > (15.0)) and ((zDim) <= (100.0))));
+  var ok6 : bool = (((pre (delta_zDim)) > (0.1)) and ((pre (delta_zDim)) < (0.9))) => (((zDim) >= (1.0)) and ((zDim) <= (15.0)));
+  var ok7 : bool = ((((0.0) <= (isoFlag)) and ((isoFlag) <= (1.0))) and ((0.0) <= (constEnFlag))) and ((constEnFlag) <= (1.0));
+  var guarantee_delta_val : bool = ((0.0) <= (delta_val)) and ((delta_val) <= (1.0));
+  var guarantee_cvg_val : bool = ((((pre (delta_val)) <= (0.1)) and (not (cvg))) => ((val) < (-(172.0)))) and ((((pre (delta_val)) >= (0.9)) and (not (cvg))) => ((val) > (373.0)));
+  var ok8 : bool = (((pre (delta_val)) > (0.1)) and ((pre (delta_val)) < (0.9))) => (((val) >= (-(172.0))) and ((val) <= (373.0)));
+  var ok9 : bool = ((1.0) <= (runTime)) and ((runTime) <= (10000.0));
+  var ok10 : bool = ((((((((((guarantee_delta_material) and (guarantee_cvg_material)) and (guarantee_delta_Init)) and (guarantee_delta_xDim)) and (guarantee_cvg_xDim)) and (guarantee_delta_yDim)) and (guarantee_cvg_yDim)) and (guarantee_delta_zDim)) and (guarantee_cvg_zDim)) and (guarantee_delta_val)) and (guarantee_cvg_val);
+  guarantee ok1;
+  guarantee ok2;
+  guarantee ok3;
+  guarantee ok4;
+  guarantee ok5;
+  guarantee ok6;
+  guarantee ok7;
+  guarantee ok8;
+  guarantee ok9;
+  guarantee ok10;
+*)
+
+

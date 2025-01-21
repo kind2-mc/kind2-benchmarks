@@ -1,0 +1,13 @@
+type Types__state__sig__impl = struct {val : int};
+
+node imported main (
+
+) returns (
+  State_Out : Types__state__sig__impl
+);
+(*@contract
+  var __GUARANTEE0 : bool = ((State_Out).val) = ((0) -> (pre ((State_Out).val)));
+  guarantee __GUARANTEE0;
+*)
+
+

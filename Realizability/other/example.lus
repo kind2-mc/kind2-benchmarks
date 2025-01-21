@@ -1,0 +1,19 @@
+node imported top (
+  x : bool
+) returns (
+  state_ : int
+);
+(*@contract
+  var bias : int = (0) -> ((if (x) then (1) else (-(1))) + (pre (bias)));
+  var bias_max : bool = (false) -> ((((bias) >= (2)) or ((bias) <= (-(2)))) or (pre (bias_max)));
+  var guarantee1 : bool = ((state_) = (0)) => ((bias) = (0));
+  var guarantee2 : bool = (true) -> (((pre ((state_) = (0))) and (x)) => ((state_) = (2)));
+  var guarantee3 : bool = (true) -> (((pre ((state_) = (0))) and (not (x))) => ((state_) = (1)));
+  var guarantee4 : bool = (bias_max) => ((state_) = (3));
+  guarantee guarantee1;
+  guarantee guarantee2;
+  guarantee guarantee3;
+  guarantee guarantee4;
+*)
+
+

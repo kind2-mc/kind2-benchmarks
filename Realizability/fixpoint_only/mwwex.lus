@@ -1,0 +1,17 @@
+node imported mwwex (
+  i : bool
+) returns (
+  x : real
+);
+(*@contract
+  var ok1 : bool = (true) -> (((pre (x)) < (9.0)) => ((x) = ((pre (x)) + (1.0))));
+  var ok2 : bool = (x) > (0.0);
+  var ok3 : bool = (x) < (10.0);
+  var ok4 : bool = (true) -> (((pre (x)) = (9.0)) => ((x) = (0.0)));
+  guarantee ok1;
+  guarantee ok2;
+  guarantee ok3;
+  guarantee ok4;
+*)
+
+

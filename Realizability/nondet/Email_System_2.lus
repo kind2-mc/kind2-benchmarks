@@ -1,0 +1,56 @@
+node imported Email_System_2 (
+  cvg : bool
+) returns (
+  mainC : real;
+  index1 : real;
+  index2 : real;
+  flag : real;
+  user : real;
+  messID : real;
+  userCha0 : real;
+  userCha1 : real;
+  userCha2 : real;
+  userCha3 : real;
+  userCha4 : real;
+  passCha0 : real;
+  passCha1 : real;
+  passCha2 : real;
+  passCha3 : real;
+  passCha4 : real;
+  msgCha0 : real;
+  msgCha1 : real;
+  msgCha2 : real;
+  msgCha3 : real;
+  msgCha4 : real;
+  delta_mainC : real;
+  delta_user : real;
+  delta_messID : real
+);
+(*@contract
+  var guarantee_delta_mainC : bool = ((0.0) <= (delta_mainC)) and ((delta_mainC) <= (1.0));
+  var guarantee_delta_user : bool = ((0.0) <= (delta_user)) and ((delta_user) <= (1.0));
+  var guarantee_delta_messID : bool = ((0.0) <= (delta_messID)) and ((delta_messID) <= (1.0));
+  var guarantee_coverage_improvement_implies_delta_mainC : bool = ((((pre (delta_mainC)) < (0.1)) and (not (cvg))) => ((mainC) < (1.0))) and ((((pre (delta_mainC)) >= (0.9)) and (not (cvg))) => ((mainC) > (3.0)));
+  var guarantee_coverage_improvement_implies_delta_user : bool = ((((pre (delta_user)) < (0.1)) and (not (cvg))) => ((user) < (1.0))) and ((((pre (delta_user)) >= (0.9)) and (not (cvg))) => ((user) > (8.0)));
+  var guarantee_coverage_improvement_implies_delta_messID : bool = ((((pre (delta_messID)) < (0.1)) and (not (cvg))) => ((messID) < (0.0))) and ((((pre (delta_mainC)) >= (0.9)) and (not (cvg))) => ((messID) > (21.0)));
+  var ok1 : bool = (((pre (delta_mainC)) >= (0.1)) and ((pre (delta_mainC)) <= (0.9))) => (((mainC) >= (1.0)) and ((mainC) <= (3.0)));
+  var ok2 : bool = (((pre (delta_user)) >= (0.1)) and ((pre (delta_user)) <= (0.9))) => (((user) >= (1.0)) and ((user) <= (8.0)));
+  var ok3 : bool = (((pre (delta_messID)) >= (0.1)) and ((pre (delta_messID)) <= (0.9))) => (((messID) >= (0.0)) and ((messID) <= (21.0)));
+  var ok4 : bool = ((index1) >= (0.0)) and ((index2) >= (0.0));
+  var ok5 : bool = ((0.0) <= (flag)) and ((flag) <= (1.0));
+  var ok6 : bool = ((((((((((32.0) <= (userCha0)) and ((userCha0) <= (126.0))) and ((32.0) <= (userCha1))) and ((userCha1) <= (126.0))) and ((32.0) <= (userCha2))) and ((userCha2) <= (126.0))) and ((32.0) <= (userCha3))) and ((userCha3) <= (126.0))) and ((32.0) <= (userCha4))) and ((userCha4) <= (126.0));
+  var ok7 : bool = ((((((((((32.0) <= (passCha0)) and ((passCha0) <= (126.0))) and ((32.0) <= (passCha1))) and ((passCha1) <= (126.0))) and ((32.0) <= (passCha2))) and ((passCha2) <= (126.0))) and ((32.0) <= (passCha3))) and ((passCha3) <= (126.0))) and ((32.0) <= (passCha4))) and ((passCha4) <= (126.0));
+  var ok8 : bool = ((((((((((32.0) <= (msgCha0)) and ((msgCha0) <= (126.0))) and ((32.0) <= (msgCha1))) and ((msgCha1) <= (126.0))) and ((32.0) <= (msgCha2))) and ((msgCha2) <= (126.0))) and ((32.0) <= (msgCha3))) and ((msgCha3) <= (126.0))) and ((32.0) <= (msgCha4))) and ((msgCha4) <= (126.0));
+  var ok9 : bool = (((((guarantee_delta_mainC) and (guarantee_delta_user)) and (guarantee_delta_messID)) and (guarantee_coverage_improvement_implies_delta_user)) and (guarantee_coverage_improvement_implies_delta_messID)) and (guarantee_coverage_improvement_implies_delta_mainC);
+  guarantee ok1;
+  guarantee ok2;
+  guarantee ok3;
+  guarantee ok4;
+  guarantee ok5;
+  guarantee ok6;
+  guarantee ok7;
+  guarantee ok8;
+  guarantee ok9;
+*)
+
+

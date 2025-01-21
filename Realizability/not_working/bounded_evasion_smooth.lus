@@ -1,0 +1,48 @@
+type direction = enum {N, S, E, W};
+
+node abs (
+  x : real
+) returns (
+  y : real
+);
+let
+  y = if ((x) < (0.0)) then (-(x)) else (x);
+tel
+
+node Initially (
+  exp : bool
+) returns (
+  iexp : bool
+);
+let
+  iexp = (exp) -> (true);
+tel
+
+node imported bounded_evasion (
+  adv_x : real;
+  adv_y : real
+) returns (
+  rbt_x : real;
+  rbt_y : real;
+  dir : direction
+);
+(*@contract
+  var ok1 : bool = Initially(((rbt_x) = (0.5)) and ((rbt_y) = (0.5)));
+  var ok2 : bool = ((rbt_x) >= (0.0)) and ((rbt_x) <= (1.0));
+  var ok3 : bool = ((rbt_y) >= (0.0)) and ((rbt_y) <= (1.0));
+  var ok4 : bool = not (((rbt_x) = (adv_x)) and ((rbt_y) = (adv_y)));
+  var ok5 : bool = (true) -> (if ((dir) = (N)) then (((rbt_x) = (pre (rbt_x))) and ((rbt_y) = ((pre (rbt_y)) + (0.1)))) else (if ((dir) = (S)) then (((rbt_x) = (pre (rbt_x))) and ((rbt_y) = (pre ((rbt_y) - (0.1))))) else (if ((dir) = (E)) then (((rbt_x) = ((pre (rbt_x)) + (0.1))) and ((rbt_y) = (pre (rbt_y)))) else (((rbt_x) = ((pre (rbt_x)) - (0.1))) and ((rbt_y) = (pre (rbt_y)))))));
+  var ok6 : bool = (true) -> (((((pre (((dir) = (N)) and ((rbt_y) < (1.0)))) => ((dir) <> (S))) and ((pre (((dir) = (S)) and ((rbt_y) > (0.0)))) => ((dir) <> (N)))) and ((pre (((dir) = (E)) and ((rbt_x) < (1.0)))) => ((dir) <> (W)))) and ((pre (((dir) = (W)) and ((rbt_x) > (0.0)))) => ((dir) <> (E))));
+  assume Initially(((adv_x) = (0.8)) and ((adv_y) = (0.8)));
+  assume ((((adv_x) >= (0.0)) and ((adv_x) <= (1.0))) and ((adv_y) >= (0.0))) and ((adv_y) <= (1.0));
+  assume (((adv_x) >= ((pre (adv_x)) - (0.1))) or ((adv_x) = (pre (adv_x)))) or ((adv_x) <= ((pre (adv_x)) + (0.1)));
+  assume (((adv_y) >= ((pre (adv_y)) - (0.1))) or ((adv_y) = (pre (adv_y)))) or ((adv_y) <= ((pre (adv_y)) + (0.1)));
+  guarantee ok1;
+  guarantee ok2;
+  guarantee ok3;
+  guarantee ok4;
+  guarantee ok5;
+  guarantee ok6;
+*)
+
+

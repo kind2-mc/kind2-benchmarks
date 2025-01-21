@@ -1,0 +1,18 @@
+type Types__speed__speed_impl = struct {val : real};
+
+node imported main (
+  Target : Types__speed__speed_impl;
+  Actual : Types__speed__speed_impl
+) returns (
+  Actuator_Input : real
+);
+(*@contract
+  var __GUARANTEE0 : bool = (Actuator_Input) = (u);
+  var e : real = ((Target).val) - ((Actual).val);
+  var e_int : real = ((0.0) -> (pre (e))) + (e);
+  var e_dot : real = ((0.0) -> (pre (e))) - (e);
+  var u : real = (((0.2) * (e)) + ((0.1) * (e_dot))) + ((0.1) * (e_int));
+  guarantee __GUARANTEE0;
+*)
+
+

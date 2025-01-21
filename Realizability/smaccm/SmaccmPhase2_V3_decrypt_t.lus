@@ -1,0 +1,14 @@
+node imported main (
+  enc_mavlink___EVENT_ : bool
+) returns (
+  message_passed_decryption : bool;
+  mavlink_out___EVENT_ : bool
+);
+(*@contract
+  var __GUARANTEE0 : bool = (mavlink_out___EVENT_) => (enc_mavlink___EVENT_);
+  var __GUARANTEE1 : bool = (mavlink_out___EVENT_) => (message_passed_decryption);
+  guarantee __GUARANTEE0;
+  guarantee __GUARANTEE1;
+*)
+
+

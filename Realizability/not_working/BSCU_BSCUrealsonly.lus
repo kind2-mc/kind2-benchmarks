@@ -1,0 +1,106 @@
+type BSCU__ChannelStatus__ChannelStatusImpl = struct {Active : bool; Cmd : real; Error : bool};
+type BSCU__PanelMsg__PanelMsgImpl = struct {LO : bool; MAX : bool; MED : bool};
+
+node Agree_Nodes__b2i (
+  b : bool
+) returns (
+  i : real
+);
+let
+  i = if (b) then (1.0) else (0.0);
+tel
+
+node Agree_Nodes__True_At_Least (
+  p : bool;
+  n : real
+) returns (
+  r : bool
+);
+var
+  c : real;
+  __nodeLemma0 : bool;
+let
+  c = (Agree_Nodes__b2i(p)) -> (if (p) then ((pre (c)) + (1.0)) else (0.0));
+  r = (true) -> ((((pre (c)) > (0.0)) and ((pre (c)) < (n))) => (p));
+  __nodeLemma0 = (c) >= (0.0);
+ --%PROPERTY __nodeLemma0;
+tel
+
+node Agree_Nodes__True_At_Most (
+  p : bool;
+  n : real
+) returns (
+  r : bool
+);
+var
+  c : real;
+  __nodeLemma0 : bool;
+let
+  c = (Agree_Nodes__b2i(p)) -> (if (p) then ((pre (c)) + (1.0)) else (0.0));
+  r = (true) -> (((pre (c)) = (n)) => (not (p)));
+  __nodeLemma0 = (c) >= (0.0);
+ --%PROPERTY __nodeLemma0;
+tel
+
+node Agree_Nodes__Duration (
+  p : bool
+) returns (
+  c : real
+);
+var
+  __nodeLemma0 : bool;
+let
+  c = (Agree_Nodes__b2i(p)) -> (if (p) then ((pre (c)) + (1.0)) else (0.0));
+  __nodeLemma0 = (c) >= (0.0);
+ --%PROPERTY __nodeLemma0;
+tel
+
+node Agree_Nodes__Latch (
+  p : bool
+) returns (
+  r : bool
+);
+let
+  r = (p) -> ((p) or (pre (r)));
+tel
+
+node imported main (
+  Panel : BSCU__PanelMsg__PanelMsgImpl;
+  Pedal : real;
+  FailCOM1 : bool;
+  FailMON1 : bool;
+  FailCOM2 : bool;
+  FailMON2 : bool
+) returns (
+  Initializing : bool;
+  CH1 : BSCU__ChannelStatus__ChannelStatusImpl;
+  CH2 : BSCU__ChannelStatus__ChannelStatusImpl
+);
+(*@contract
+  var __GUARANTEE0 : bool = (No_Failed_Component) => ((not (Initializing)) => ((not ((CH1).Error)) or (not ((CH2).Error))));
+  var __GUARANTEE1 : bool = (At_Most_One_Failed_Component) => ((not (Initializing)) => ((not ((CH1).Error)) or (not ((CH2).Error))));
+  var __GUARANTEE2 : bool = (No_Failed_Component) => ((not (Initializing)) => (((CH1).Active) or ((CH2).Active)));
+  var __GUARANTEE3 : bool = (At_Most_One_Failed_Component) => ((Agree_Nodes__Duration((not (Initializing)) and (not (((CH1).Active) or ((CH2).Active))))) < (7.0));
+  var __GUARANTEE4 : bool = (No_Failed_Component) => ((Agree_Nodes__Duration(((not (Initializing)) and ((CH1).Active)) and ((CH2).Active))) < (7.0));
+  var __GUARANTEE5 : bool = (At_Most_One_Failed_Component) => ((Agree_Nodes__Duration(((not (Initializing)) and ((CH1).Active)) and ((CH2).Active))) < (7.0));
+  var COM1Failed : bool = Agree_Nodes__Latch(FailCOM1);
+  var COM2Failed : bool = Agree_Nodes__Latch(FailCOM2);
+  var MON1Failed : bool = Agree_Nodes__Latch(FailMON1);
+  var MON2Failed : bool = Agree_Nodes__Latch(FailMON2);
+  var No_Failed_Component : bool = not ((((COM1Failed) or (COM2Failed)) or (MON1Failed)) or (MON2Failed));
+  var At_Most_One_Failed_Component : bool = ((((COM1Failed) => (not (((COM2Failed) or (MON1Failed)) or (MON2Failed)))) and ((COM2Failed) => (not (((COM1Failed) or (MON1Failed)) or (MON2Failed))))) and ((MON1Failed) => (not (((COM1Failed) or (COM2Failed)) or (MON2Failed))))) and ((MON2Failed) => (not (((COM1Failed) or (COM2Failed)) or (MON1Failed))));
+  assume At_Most_One_Failed_Component;
+  assume (Pedal) = (100.0);
+  assume ((((Panel).LO) => (not (((Panel).MED) or ((Panel).MAX)))) and (((Panel).MED) => (not (((Panel).LO) or ((Panel).MAX))))) and (((Panel).MAX) => (not (((Panel).LO) or ((Panel).MED))));
+  assume ((Agree_Nodes__True_At_Least((Panel).LO, 13.0)) and (Agree_Nodes__True_At_Least((Panel).MED, 13.0))) and (Agree_Nodes__True_At_Least((Panel).MAX, 13.0));
+  assume ((Agree_Nodes__True_At_Most((Panel).LO, 20.0)) and (Agree_Nodes__True_At_Most((Panel).MED, 20.0))) and (Agree_Nodes__True_At_Most((Panel).MAX, 20.0));
+  assume ((Agree_Nodes__True_At_Least(not ((Panel).LO), 13.0)) and (Agree_Nodes__True_At_Least(not ((Panel).MED), 13.0))) and (Agree_Nodes__True_At_Least(not ((Panel).MAX), 13.0));
+  guarantee __GUARANTEE0;
+  guarantee __GUARANTEE1;
+  guarantee __GUARANTEE2;
+  guarantee __GUARANTEE3;
+  guarantee __GUARANTEE4;
+  guarantee __GUARANTEE5;
+*)
+
+

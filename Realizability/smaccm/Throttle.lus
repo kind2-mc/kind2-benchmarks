@@ -1,0 +1,13 @@
+type Types__speed__speed_impl = struct {val : real};
+
+node imported main (
+  Actuator_Input : real
+) returns (
+  Actual : Types__speed__speed_impl
+);
+(*@contract
+  var __GUARANTEE0 : bool = ((Actual).val) = (((0.0) -> (pre ((Actual).val))) + ((0.1) * (Actuator_Input)));
+  guarantee __GUARANTEE0;
+*)
+
+

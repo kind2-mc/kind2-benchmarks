@@ -1,0 +1,34 @@
+node imported QuadtreeConways (
+  cvg : bool
+) returns (
+  mainC : real;
+  xCoord : real;
+  yCoord : real;
+  timeC : real;
+  delta_mainC : real;
+  delta_xCoord : real;
+  delta_yCoord : real;
+  delta_timeC : real
+);
+(*@contract
+  var guarantee_delta_mainC : bool = ((0.0) <= (delta_mainC)) and ((delta_mainC) <= (1.0));
+  var guarantee_delta_xCoord : bool = ((0.0) <= (delta_xCoord)) and ((delta_xCoord) <= (1.0));
+  var guarantee_delta_yCoord : bool = ((0.0) <= (delta_yCoord)) and ((delta_yCoord) <= (1.0));
+  var guarantee_delta_timeC : bool = ((0.0) <= (delta_timeC)) and ((delta_timeC) <= (1.0));
+  var guarantee_coverage_improvement_implies_delta_mainC : bool = ((((pre (delta_mainC)) < (0.1)) and (not (cvg))) => ((mainC) < (1.0))) and ((((pre (delta_mainC)) >= (0.9)) and (not (cvg))) => ((mainC) > (5.0)));
+  var guarantee_coverage_improvement_implies_delta_xCoord : bool = ((((pre (delta_xCoord)) < (0.1)) and (not (cvg))) => ((xCoord) < (0.0))) and ((((pre (delta_xCoord)) > (0.9)) and (not (cvg))) => ((xCoord) > (8200.0)));
+  var guarantee_coverage_improvement_implies_delta_yCoord : bool = ((((pre (delta_yCoord)) < (0.1)) and (not (cvg))) => ((yCoord) < (0.0))) and ((((pre (delta_yCoord)) > (0.9)) and (not (cvg))) => ((yCoord) > (8200.0)));
+  var guarantee_coverage_improvement_implies_delta_timeC : bool = ((((pre (delta_timeC)) < (0.1)) and (not (cvg))) => ((timeC) < (100.0))) and ((((pre (delta_timeC)) > (0.9)) and (not (cvg))) => ((timeC) > (1000.0)));
+  var ok1 : bool = (((pre (delta_mainC)) >= (0.1)) and ((pre (delta_mainC)) <= (0.9))) => (((mainC) >= (1.0)) and ((mainC) <= (5.0)));
+  var ok2 : bool = (((pre (delta_xCoord)) >= (0.1)) and ((pre (delta_xCoord)) <= (0.9))) => (((xCoord) >= (0.0)) and ((xCoord) <= (8200.0)));
+  var ok3 : bool = (((pre (delta_yCoord)) >= (0.1)) and ((pre (delta_yCoord)) <= (0.9))) => (((yCoord) >= (0.0)) and ((yCoord) <= (8200.0)));
+  var ok4 : bool = (((pre (delta_timeC)) >= (0.1)) and ((pre (delta_timeC)) <= (0.9))) => (((timeC) >= (100.0)) and ((timeC) <= (1000.0)));
+  var ok5 : bool = (((((((guarantee_delta_mainC) and (guarantee_delta_xCoord)) and (guarantee_delta_yCoord)) and (guarantee_delta_timeC)) and (guarantee_coverage_improvement_implies_delta_mainC)) and (guarantee_coverage_improvement_implies_delta_xCoord)) and (guarantee_coverage_improvement_implies_delta_yCoord)) and (guarantee_coverage_improvement_implies_delta_timeC);
+  guarantee ok1;
+  guarantee ok2;
+  guarantee ok3;
+  guarantee ok4;
+  guarantee ok5;
+*)
+
+

@@ -1,0 +1,14 @@
+node imported evasion (
+
+) returns (
+  dist_x : int;
+  dist_y : int
+);
+(*@contract
+  var t1 : bool = (((pre (dist_x)) = ((dist_x) - (1))) or ((pre (dist_x)) = ((dist_x) + (1)))) or ((pre (dist_x)) = (dist_x));
+  var t2 : bool = (((pre (dist_y)) = ((dist_y) - (1))) or ((pre (dist_y)) = ((dist_y) + (1)))) or ((pre (dist_y)) = (dist_y));
+  var ok : bool = (((not ((dist_y) < (0))) and (not ((dist_x) < (0)))) and (not (((dist_x) = (0)) or ((dist_y) = (0))))) -> (((t1) and (t2)) => (not (((dist_x) <= (0)) and ((dist_y) <= (0)))));
+  guarantee ok;
+*)
+
+

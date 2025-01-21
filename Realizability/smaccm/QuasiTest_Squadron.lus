@@ -1,0 +1,20 @@
+node imported main (
+  left_shift : bool;
+  right_shift : bool
+) returns (
+  leader_l : int;
+  right_l : int;
+  left_l : int;
+  leader_r : int;
+  right_r : int;
+  left_r : int
+);
+(*@contract
+  var __GUARANTEE0 : bool = (((((((leader_l) <> (3)) and ((leader_r) <> (3))) and ((right_l) <> (3))) and ((right_r) <> (3))) and ((left_l) <> (3))) and ((left_r) <> (3))) => ((((leader_l) = (leader_r)) and ((right_l) = (right_r))) and ((left_l) = (left_r)));
+  assume (((leader_l) = (0)) and ((leader_r) = (0))) -> (true);
+  assume (((right_l) = (1)) and ((right_r) = (1))) -> (true);
+  assume (((left_l) = (2)) and ((left_r) = (2))) -> (true);
+  guarantee __GUARANTEE0;
+*)
+
+

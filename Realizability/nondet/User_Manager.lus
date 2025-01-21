@@ -1,0 +1,37 @@
+node imported User_Manager (
+  cvg : bool
+) returns (
+  mainC : real;
+  indx : real;
+  flag : real;
+  userIdx : real;
+  username : real;
+  password : real;
+  cmd : real;
+  delta_mainC : real;
+  delta_cmd : real
+);
+(*@contract
+  var guarantee_delta_mainC : bool = ((0.0) <= (delta_mainC)) and ((delta_mainC) <= (1.0));
+  var guarantee_delta_cmd : bool = ((0.0) <= (delta_cmd)) and ((delta_cmd) <= (1.0));
+  var guarantee_coverage_improvement_implies_delta_mainC : bool = ((((pre (delta_mainC)) < (0.1)) and (not (cvg))) => ((mainC) < (1.0))) and ((((pre (delta_mainC)) >= (0.9)) and (not (cvg))) => ((mainC) > (4.0)));
+  var guarantee_coverage_improvement_implies_delta_cmd : bool = ((((pre (delta_cmd)) < (0.1)) and (not (cvg))) => ((cmd) < (0.0))) and ((((pre (delta_cmd)) > (0.9)) and (not (cvg))) => ((cmd) > (11.0)));
+  var ok1 : bool = (((pre (delta_mainC)) >= (0.1)) and ((pre (delta_mainC)) <= (0.9))) => (((mainC) >= (1.0)) and ((mainC) <= (4.0)));
+  var ok2 : bool = (indx) >= (0.0);
+  var ok3 : bool = (userIdx) >= (0.0);
+  var ok4 : bool = ((username) >= (32.0)) and ((username) <= (126.0));
+  var ok5 : bool = ((password) >= (32.0)) and ((password) <= (126.0));
+  var ok6 : bool = (((pre (delta_cmd)) >= (0.1)) and ((pre (delta_cmd)) <= (0.9))) => (((cmd) >= (0.0)) and ((cmd) <= (11.0)));
+  var ok7 : bool = ((0.0) <= (flag)) and ((flag) <= (1.0));
+  var ok8 : bool = (((guarantee_delta_mainC) and (guarantee_delta_cmd)) and (guarantee_coverage_improvement_implies_delta_mainC)) and (guarantee_coverage_improvement_implies_delta_cmd);
+  guarantee ok1;
+  guarantee ok2;
+  guarantee ok3;
+  guarantee ok4;
+  guarantee ok5;
+  guarantee ok6;
+  guarantee ok7;
+  guarantee ok8;
+*)
+
+

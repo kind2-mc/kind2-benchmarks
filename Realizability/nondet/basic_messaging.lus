@@ -1,0 +1,55 @@
+node H (
+  X : bool
+) returns (
+  Y : bool
+);
+let
+  Y = (X) -> ((X) and (pre (Y)));
+tel
+
+node abs (
+  X : real
+) returns (
+  Y : real
+);
+let
+  Y = if ((X) < (0.0)) then ((-(1.0)) * (X)) else (X);
+tel
+
+node imported basic_messaging (
+  cvg : bool
+) returns (
+  mainC : real;
+  index1 : real;
+  index2 : real;
+  user : real;
+  messID : real;
+  delta_str : real;
+  delta_mainC : real;
+  delta_user : real;
+  strCha0 : real
+);
+(*@contract
+  var guarantee_delta_mainC : bool = ((0.0) <= (delta_mainC)) and ((delta_mainC) <= (1.0));
+  var guarantee_coverage_improved_implies_delta_mainC : bool = ((((pre (delta_mainC)) <= (0.1)) and (not (cvg))) => ((mainC) < (1.0))) and ((((pre (delta_mainC)) >= (0.9)) and (not (cvg))) => ((mainC) > (3.0)));
+  var ok1 : bool = (((pre (delta_mainC)) > (0.1)) and ((pre (delta_mainC)) < (0.9))) => (((mainC) >= (1.0)) and ((mainC) <= (3.0)));
+  var guarantee_delta_str : bool = ((0.0) <= (delta_str)) and ((delta_str) <= (1.0));
+  var guarantee_coverage_improved_implies_delta_str : bool = ((((pre (delta_str)) <= (0.1)) and (not (cvg))) => ((strCha0) < (32.0))) and ((((pre (delta_str)) >= (0.9)) and (not (cvg))) => ((strCha0) > (126.0)));
+  var ok2 : bool = (((pre (delta_str)) > (0.1)) and ((pre (delta_str)) < (0.9))) => (((strCha0) >= (32.0)) and ((strCha0) <= (126.0)));
+  var guarantee_delta_user : bool = ((0.0) <= (delta_user)) and ((delta_user) <= (1.0));
+  var guarantee_coverage_improved_implies_delta_user : bool = ((((pre (delta_user)) <= (0.1)) and (not (cvg))) => ((user) < (1.0))) and ((((pre (delta_user)) >= (0.9)) and (not (cvg))) => ((user) > (6.0)));
+  var ok3 : bool = (((pre (delta_user)) > (0.1)) and ((pre (delta_user)) < (0.9))) => (((user) >= (1.0)) and ((user) <= (6.0)));
+  var ok4 : bool = (index1) >= (0.0);
+  var ok5 : bool = (index2) >= (0.0);
+  var ok6 : bool = ((messID) >= (1.0)) and ((messID) <= (255.0));
+  var ok7 : bool = (((((guarantee_coverage_improved_implies_delta_str) and (guarantee_delta_str)) and (guarantee_coverage_improved_implies_delta_mainC)) and (guarantee_delta_mainC)) and (guarantee_coverage_improved_implies_delta_user)) and (guarantee_delta_user);
+  guarantee ok1;
+  guarantee ok2;
+  guarantee ok3;
+  guarantee ok4;
+  guarantee ok5;
+  guarantee ok6;
+  guarantee ok7;
+*)
+
+

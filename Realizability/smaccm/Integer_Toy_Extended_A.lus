@@ -1,0 +1,12 @@
+node imported main (
+  Input : int
+) returns (
+  Output : int
+);
+(*@contract
+  var __GUARANTEE0 : bool = (Output) < ((2) * (Input));
+  assume (Input) < (20);
+  guarantee __GUARANTEE0;
+*)
+
+

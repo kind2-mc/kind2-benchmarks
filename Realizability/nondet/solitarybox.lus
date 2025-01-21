@@ -1,0 +1,14 @@
+node imported solitarybox (
+
+) returns (
+  posx : int;
+  posy : int
+);
+(*@contract
+  var t1 : bool = (((posy) = (pre (posy))) or ((pre (posy)) = ((posy) - (1)))) or ((pre (posy)) = ((posy) + (1)));
+  var t2 : bool = (((posx) = (pre (posx))) or ((pre (posx)) = ((posx) - (1)))) or ((pre (posx)) = ((posx) + (1)));
+  var ok : bool = ((posy) = (0)) -> (((t1) and (t2)) => (((posy) >= (-(1))) and ((posy) <= (1))));
+  guarantee ok;
+*)
+
+

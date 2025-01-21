@@ -1,0 +1,37 @@
+node imported top (
+  request_door : bool;
+  warning_start : bool;
+  in_station : bool;
+  door_is_open : bool
+) returns (
+  V62_door_ok : bool;
+  V60_open_door : bool;
+  V61_close_door : bool;
+  V287_req_pending : bool
+);
+(*@contract
+  var OK : bool = (V58_env_always_ok) => (V59_prop_ok);
+  var V58_env_always_ok : bool = (V264_env_ok) -> ((V264_env_ok) and (pre (V58_env_always_ok)));
+  var V59_prop_ok : bool = (V250_door_doesnt_open_out_of_station) and (V251_door_opens_before_leaving_station);
+  var V250_door_doesnt_open_out_of_station : bool = (door_is_open) => (in_station);
+  var V251_door_opens_before_leaving_station : bool = not ((V253_between_A_and_X) or ((false) -> ((V252_X) or (not (pre (V252_X))))));
+  var V252_X : bool = not (in_station);
+  var V253_between_A_and_X : bool = if ((false) -> (pre ((request_door) and (not (warning_start))))) then (true) else (if ((false) -> (pre (_flatten0))) then (false) else ((false) -> (pre (V253_between_A_and_X))));
+  var V264_env_ok : bool = (((((((V266_door_doesnt_open_if_not_asked) and (V265_door_doesnt_close_if_not_asked)) and (V267_tramway_doesnt_start_if_not_door_ok)) and (V268_door_initially_closed)) and (V269_initially_not_in_station)) and (V270_warning_start_and_in_station_go_down_simultaneously)) and (V271_warning_start_only_in_station)) and (V272_warning_start_cant_become_true_when_door_is_opening);
+  var V265_door_doesnt_close_if_not_asked : bool = ((false) -> ((door_is_open) or (not (pre (door_is_open))))) => (V60_open_door);
+  var V266_door_doesnt_open_if_not_asked : bool = ((false) -> ((V273_X) or (not (pre (V273_X))))) => (V61_close_door);
+  var V267_tramway_doesnt_start_if_not_door_ok : bool = ((false) -> ((V274_X) or (not (pre (V274_X))))) => ((false) -> (pre (V62_door_ok)));
+  var V268_door_initially_closed : bool = (not (door_is_open)) -> (true);
+  var V269_initially_not_in_station : bool = (not (in_station)) -> (true);
+  var V270_warning_start_and_in_station_go_down_simultaneously : bool = ((false) -> ((V275_X) or (not (pre (V275_X))))) = ((false) -> ((V276_X) or (not (pre (V276_X)))));
+  var V271_warning_start_only_in_station : bool = (warning_start) => (in_station);
+  var V272_warning_start_cant_become_true_when_door_is_opening : bool = ((false) -> ((warning_start) or (not (pre (warning_start))))) => (not (V60_open_door));
+  var V273_X : bool = not (door_is_open);
+  var V274_X : bool = not (in_station);
+  var V275_X : bool = not (in_station);
+  var V276_X : bool = not (warning_start);
+  var _flatten0 : bool = (false) -> (pre (door_is_open));
+  guarantee OK;
+*)
+
+

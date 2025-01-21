@@ -1,0 +1,41 @@
+node Defs__rising (
+  signal : bool
+) returns (
+  result : bool
+);
+let
+  result = (false) -> ((pre (not (signal))) and (signal));
+tel
+
+node imported main (
+  left_shift : bool;
+  right_shift : bool;
+  neighbor_state_0 : int;
+  neighbor_state_1 : int
+) returns (
+  state_ : int
+);
+(*@contract
+  var __GUARANTEE0 : bool = ((state_) >= (0)) and ((state_) <= (5));
+  var __GUARANTEE1 : bool = (true) -> ((((Defs__rising(left_shift)) and ((pre (state_)) = (0))) => ((state_) = (4))) and (((Defs__rising(right_shift)) and ((pre (state_)) = (0))) => ((state_) = (5))));
+  var __GUARANTEE2 : bool = (true) -> ((((Defs__rising(left_shift)) and ((pre (state_)) = (1))) => ((state_) = (5))) and (((Defs__rising(right_shift)) and ((pre (state_)) = (1))) => ((state_) = (3))));
+  var __GUARANTEE3 : bool = (true) -> ((((Defs__rising(left_shift)) and ((pre (state_)) = (2))) => ((state_) = (3))) and (((Defs__rising(right_shift)) and ((pre (state_)) = (2))) => ((state_) = (4))));
+  var __GUARANTEE4 : bool = ((state_) = (0)) -> (true);
+  var __GUARANTEE5 : bool = (true) -> (((not ((Defs__rising(left_shift)) or (Defs__rising(right_shift)))) and ((pre (state_)) <= (2))) => ((state_) = (pre (state_))));
+  var __GUARANTEE6 : bool = (true) -> (((pre (state_)) = (3)) => (if (((pre (neighbor_state_0)) <> (0)) and ((pre (neighbor_state_1)) <> (0))) then ((state_) = (0)) else ((state_) = (3))));
+  var __GUARANTEE7 : bool = (true) -> (((pre (state_)) = (5)) => (if (((pre (neighbor_state_0)) <> (2)) and ((pre (neighbor_state_1)) <> (2))) then ((state_) = (2)) else ((state_) = (5))));
+  var __GUARANTEE8 : bool = (true) -> (((pre (state_)) = (4)) => (if (((pre (neighbor_state_0)) <> (1)) and ((pre (neighbor_state_1)) <> (1))) then ((state_) = (1)) else ((state_) = (4))));
+  var is_pending : bool = ((state_) >= (3)) or ((state_) <= (5));
+  assume not ((left_shift) and (right_shift));
+  guarantee __GUARANTEE0;
+  guarantee __GUARANTEE1;
+  guarantee __GUARANTEE2;
+  guarantee __GUARANTEE3;
+  guarantee __GUARANTEE4;
+  guarantee __GUARANTEE5;
+  guarantee __GUARANTEE6;
+  guarantee __GUARANTEE7;
+  guarantee __GUARANTEE8;
+*)
+
+

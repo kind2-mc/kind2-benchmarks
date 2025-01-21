@@ -1,0 +1,15 @@
+node imported main (
+  input___EVENT_ : bool;
+  input : int
+) returns (
+  t : real;
+  output___EVENT_ : bool;
+  output : int
+);
+(*@contract
+  var __GUARANTEE0 : bool = ((output) <> ((0) -> (pre (output)))) => ((time_of_last_input_change) < (40.0));
+  var time_of_last_input_change : real = if ((input) <> ((0) -> (pre (input)))) then (t) else ((0.0) -> (pre (time_of_last_input_change)));
+  guarantee __GUARANTEE0;
+*)
+
+

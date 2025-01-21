@@ -1,0 +1,11 @@
+node imported main (
+  mavlink___EVENT_ : bool
+) returns (
+  enc_mavlink___EVENT_ : bool
+);
+(*@contract
+  var __GUARANTEE0 : bool = (enc_mavlink___EVENT_) => (mavlink___EVENT_);
+  guarantee __GUARANTEE0;
+*)
+
+

@@ -1,0 +1,15 @@
+node imported onedim (
+  x : int
+) returns (
+  y : int
+);
+(*@contract
+  var position : int = (1) -> (((pre (position)) + (x)) + (y));
+  var ok1 : bool = ((y) >= (-(1))) and ((y) <= (1));
+  var ok2 : bool = (position) >= (0);
+  assume ((x) >= (-(1))) and ((x) <= (1));
+  guarantee ok1;
+  guarantee ok2;
+*)
+
+

@@ -1,0 +1,25 @@
+type Types__speed__speed_impl = struct {val : real};
+type Types__pitch__pitch_impl = struct {val : real};
+
+node Agree_Nodes__abs (
+  inp : real
+) returns (
+  outp : real
+);
+let
+  outp = if ((inp) < (0.0)) then (-(inp)) else (inp);
+tel
+
+node imported main (
+  Target_Tire_Direction : Types__pitch__pitch_impl;
+  Speed : Types__speed__speed_impl
+) returns (
+  Actual_Tire_Direction : Types__pitch__pitch_impl
+);
+(*@contract
+  var __GUARANTEE0 : bool = if (((Agree_Nodes__abs((Target_Tire_Direction).val)) > (0.2)) and (((Speed).val) > (45.0))) then (((Actual_Tire_Direction).val) = (0.2)) else (((Actual_Tire_Direction).val) = ((Target_Tire_Direction).val));
+  assume (Agree_Nodes__abs((Target_Tire_Direction).val)) <= (0.45);
+  guarantee __GUARANTEE0;
+*)
+
+

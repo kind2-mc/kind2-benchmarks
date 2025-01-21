@@ -1,0 +1,18 @@
+node imported top (
+  diff : int
+) returns (
+  V22_speed : int;
+  V23_plus : bool;
+  V24_minus : bool
+);
+(*@contract
+  var OK : bool = (V98_Sofar) => ((true) -> ((pre (V109_cpt)) <= (7)));
+  var V25_realistic : bool = ((((-(4)) <= (diff)) and ((diff) <= (4))) and (if ((true) -> (pre (V23_plus))) then ((diff) >= (1)) else (true))) and (if ((false) -> (pre (V24_minus))) then ((diff) <= (-(1))) else (true));
+  var V93_X : bool = ((V25_realistic) and ((0) <= (V22_speed))) and ((V22_speed) < (16));
+  var V98_Sofar : bool = (V93_X) -> ((V93_X) and (pre (V98_Sofar)));
+  var V109_cpt : int = (0) -> (if (V110_acceptable) then (0) else ((pre (V109_cpt)) + (1)));
+  var V110_acceptable : bool = ((8) <= (V22_speed)) and ((V22_speed) <= (12));
+  guarantee OK;
+*)
+
+

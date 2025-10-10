@@ -1,25 +1,25 @@
-node SWITCH1 (set,reset,init:bool) returns (level:bool);
+node SWITCH1 (tset,reset,init:bool) returns (level:bool);
 let
-  level = init -> if set then true 
+  level = init -> if tset then true 
                      else if reset then false 
                      else pre(level);
 tel
 
-node SWITCH (set,reset,init:bool) returns (level:bool);
+node SWITCH (tset,reset,init:bool) returns (level:bool);
 let
-  level = init -> if set and not pre(level) then true
+  level = init -> if tset and not pre(level) then true
                      else if reset then false
                      else pre(level);
 tel
 
-node top(set, treset, init:bool) returns (OK:bool);
+node top(tset, treset, init:bool) returns (OK:bool);
 var level,level1:bool;
 let
-  level = SWITCH(set,treset,init);
-  level1 = SWITCH1(set,treset,init);
-  OK = if (not(set and treset)) then
+  level = SWITCH(tset,treset,init);
+  level1 = SWITCH1(tset,treset,init);
+  OK = if (not(tset and treset)) then
     (level = level1)
     else true;
-  --assert not(set and treset);
+  --assert not(tset and treset);
   --%PROPERTY OK;
 tel

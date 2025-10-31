@@ -15,12 +15,12 @@ let
 tel
 
 -- Once x becomes true the node will always output true.
-node latch(in: bool) returns (out: bool);
+node latch(inp: bool) returns (out: bool);
 var
   pre_out: bool;
 let
-  pre_out = in -> pre(out);
-  out = in or pre_out;
+  pre_out = inp -> pre(out);
+  out = inp or pre_out;
 tel
 
 

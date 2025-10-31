@@ -124,11 +124,10 @@ tel
 
 -- |===| SATURATION.
 
-node saturation(in, min, max: real) returns (out: real);
+node saturation(inp, min, max: real) returns (out: real);
 let
-  out = if (in < min) then min
-                      else (if (in > max) then max
-                                          else in);
+  out = if (inp < min) then min
+        else (if (inp > max) then max else inp);
 tel
 
 node saturation3(

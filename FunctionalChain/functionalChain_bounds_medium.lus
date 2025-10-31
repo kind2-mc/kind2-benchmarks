@@ -118,11 +118,10 @@ tel
 
 -- |===| SATURATION.
 
-node saturation(in, min, max: real) returns (out: real);
+node saturation(inp, min, max: real) returns (out: real);
 let
-  out = if (in < min) then min
-                      else (if (in > max) then max
-                                          else in);
+  out = if (inp < min) then min
+        else (if (inp > max) then max else inp);
 tel
 
 node saturation3(
@@ -198,12 +197,12 @@ let
 tel
 
 -- Once x becomes true the node will always output true.
-node latch(in: bool) returns (out: bool);
+node latch(inp: bool) returns (out: bool);
 var
   pre_out: bool;
 let
-  pre_out = in -> pre(out);
-  out = in or pre_out;
+  pre_out = inp -> pre(out);
+  out = inp or pre_out;
 tel
 
 
